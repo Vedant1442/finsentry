@@ -1,6 +1,6 @@
-# Switch FinOps
+# FinSentry
 
-A team of AI agents in Discord that find wasted AWS spending, ask for permission, and fix it.
+A team of AI agents in Discord that guard your cloud spending, ask for permission, and fix waste.
 
 ---
 
@@ -10,7 +10,7 @@ Every company using AWS wastes money on cloud bills. People spin up test servers
 
 The problem is that engineers live in Discord or Slack, not in the AWS Cost Explorer console. By the time finance notices the spike at the end of the month, thousands of dollars are already gone.
 
-We built **Switch FinOps** to bring cloud cost monitoring directly into team chat. Instead of a lone dashboard nobody checks, four AI teammates run in your Discord channel, investigate waste together, verify that downsizing won't break your apps, and apply the fix when you give the green light.
+We built **FinSentry** to bring cloud cost monitoring directly into team chat. Instead of a lone dashboard nobody checks, four AI teammates run in your Discord channel, investigate waste together, verify that downsizing won't break your apps, and apply the fix when you give the green light.
 
 ---
 
@@ -38,7 +38,7 @@ The repo includes a local mock AWS dashboard (`mock-aws-console/`) so you can wa
 ## Project Structure
 
 ```text
-switch-finops/
+finsentry/
 ├── README.md                                  # You are here
 ├── workflows/
 │   ├── finops-cost-optimizer.template.yaml    # Switch agent workflow definition
