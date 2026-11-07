@@ -1,0 +1,2950 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS Management Console — Cost Optimization Hub (staging-us-east-1)</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 304 182'><path fill='%23FF9900' d='M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z'/><path fill='%23FF9900' d='M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z'/></svg>">
+  <style>
+    /* ===================================================================
+       AWS CLOUDSCAPE DESIGN SYSTEM (https://cloudscape.design)
+       Official AWS Management Console Visual Refresh Architecture & Tokens
+       =================================================================== */
+    :root, [data-theme="light"] {
+      --aws-mode: light;
+      --aws-nav-bg: #161e2e;
+      --aws-nav-border: #232f3e;
+      --aws-nav-text: #ffffff;
+      --aws-nav-subtext: #aab7b8;
+      --aws-bg: #f2f3f3;
+      --aws-subnav-bg: #ffffff;
+      --aws-subnav-border: #eaeded;
+      --aws-sidebar-bg: #ffffff;
+      --aws-sidebar-border: #eaeded;
+      --aws-surface: #ffffff;
+      --aws-surface-hover: #f8f9fa;
+      --aws-surface-alt: #fafafa;
+      --aws-border: #eaeded;
+      --aws-border-strong: #d5dbdb;
+      --aws-border-light: #f4f5f5;
+      --aws-border-radius-container: 16px;
+      --aws-border-radius-button: 20px;
+      --aws-border-radius-input: 8px;
+      --aws-text: #0f141a;
+      --aws-text-muted: #424650;
+      --aws-text-dim: #879596;
+      --aws-link: #006ce0;
+      --aws-link-hover: #002b66;
+      --aws-orange: #ec7211;
+      --aws-orange-hover: #eb5f07;
+      --aws-smile: #ff9900;
+      --aws-green: #00802f;
+      --aws-green-bg: #effff1;
+      --aws-green-border: #00802f;
+      --aws-red: #d13212;
+      --aws-red-bg: #fdf2f2;
+      --aws-red-border: #fca5a5;
+      --aws-amber: #855900;
+      --aws-amber-bg: #fffef0;
+      --aws-amber-border: #855900;
+      --aws-blue: #006ce0;
+      --aws-blue-bg: #f2f8fd;
+      --aws-blue-border: #90cdf4;
+      --aws-purple: #7c3aed;
+      --aws-purple-bg: #f5f3ff;
+      --aws-purple-border: #ddd6fe;
+      --aws-card-shadow: 0 1px 1px 0 rgba(0, 28, 36, 0.3), 0 1px 2px 0 rgba(0, 7, 22, 0.1);
+      --aws-modal-overlay: rgba(0, 7, 22, 0.55);
+      --aws-code-bg: #f2f3f3;
+      --aws-code-text: #006ce0;
+      --aws-input-bg: #ffffff;
+      --aws-input-border: #7d8998;
+      --aws-sidebar-active-bg: #f2f8fd;
+    }
+
+    [data-theme="dark"] {
+      --aws-mode: dark;
+      --aws-nav-bg: #161e2e;
+      --aws-nav-border: #232f3e;
+      --aws-nav-text: #ffffff;
+      --aws-nav-subtext: #94a3b8;
+      --aws-bg: #0f172a;
+      --aws-subnav-bg: #131b26;
+      --aws-subnav-border: #2e3e52;
+      --aws-sidebar-bg: #131b26;
+      --aws-sidebar-border: #2e3e52;
+      --aws-surface: #1a2432;
+      --aws-surface-hover: #223042;
+      --aws-surface-alt: #16202c;
+      --aws-border: #2e3e52;
+      --aws-border-strong: #414d5c;
+      --aws-border-light: rgba(255, 255, 255, 0.08);
+      --aws-text: #f1f5f9;
+      --aws-text-muted: #94a3b8;
+      --aws-text-dim: #64748b;
+      --aws-link: #38bdf8;
+      --aws-link-hover: #7dd3fc;
+      --aws-orange: #ec7211;
+      --aws-orange-hover: #eb5f07;
+      --aws-smile: #ff9900;
+      --aws-green: #10b981;
+      --aws-green-bg: rgba(16, 185, 129, 0.12);
+      --aws-green-border: rgba(16, 185, 129, 0.3);
+      --aws-red: #ef4444;
+      --aws-red-bg: rgba(239, 68, 68, 0.12);
+      --aws-red-border: rgba(239, 68, 68, 0.3);
+      --aws-amber: #f59e0b;
+      --aws-amber-bg: rgba(245, 158, 11, 0.12);
+      --aws-amber-border: rgba(245, 158, 11, 0.3);
+      --aws-blue: #38bdf8;
+      --aws-blue-bg: rgba(56, 189, 248, 0.12);
+      --aws-blue-border: rgba(56, 189, 248, 0.3);
+      --aws-purple: #c084fc;
+      --aws-purple-bg: rgba(192, 132, 252, 0.12);
+      --aws-purple-border: rgba(192, 132, 252, 0.3);
+      --aws-card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+      --aws-modal-overlay: rgba(0, 0, 0, 0.75);
+      --aws-code-bg: #0b0f19;
+      --aws-code-text: #38bdf8;
+      --aws-input-bg: #0f172a;
+      --aws-input-border: #2e3e52;
+      --aws-sidebar-active-bg: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Amazon Ember", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background: var(--aws-bg);
+      color: var(--aws-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    /* -------------------------------------------------------------------
+       1. Top AWS Global Navigation Header
+       ------------------------------------------------------------------- */
+    .aws-nav {
+      background: var(--aws-nav-bg);
+      border-bottom: 1px solid var(--aws-nav-border);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .aws-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+      max-width: 820px;
+    }
+
+    .aws-logo-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .aws-logo-group svg {
+      height: 24px;
+      width: 40px;
+      display: block;
+    }
+
+    .aws-services-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      border: 1px solid #414d5c;
+      color: #fff;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+      flex-shrink: 0;
+    }
+
+    .aws-services-btn:hover {
+      background: #232f3e;
+      border-color: #879596;
+    }
+
+    .aws-search-bar {
+      position: relative;
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .aws-search-bar input {
+      width: 100%;
+      height: 32px;
+      background: #232f3e;
+      border: 1px solid #414d5c;
+      border-radius: 4px;
+      padding: 0 44px 0 32px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .aws-search-bar input:focus {
+      background: #1a2432;
+      border-color: var(--aws-smile);
+      box-shadow: 0 0 0 1px var(--aws-smile);
+    }
+
+    .aws-search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #879596;
+      display: flex;
+      align-items: center;
+    }
+
+    .aws-search-shortcut {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #161e2e;
+      border: 1px solid #414d5c;
+      border-radius: 3px;
+      padding: 1px 6px;
+      font-size: 11px;
+      color: #879596;
+      font-family: monospace;
+    }
+
+    .aws-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .aws-theme-toggle {
+      background: #232f3e;
+      border: 1px solid #414d5c;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 14px;
+      padding: 4px 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .aws-theme-toggle:hover {
+      background: #334155;
+      border-color: #879596;
+    }
+
+    .aws-nav-icon-btn {
+      background: transparent;
+      border: none;
+      color: #d1d5db;
+      padding: 6px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      transition: background 0.15s;
+    }
+
+    .aws-nav-icon-btn:hover {
+      background: #232f3e;
+      color: #fff;
+    }
+
+    .aws-nav-badge {
+      position: absolute;
+      top: 2px;
+      right: 2px;
+      background: var(--aws-amber);
+      color: #000;
+      font-size: 10px;
+      font-weight: 700;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .aws-nav-dropdown-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: #d1d5db;
+      padding: 6px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      transition: background 0.15s;
+    }
+
+    .aws-nav-dropdown-btn:hover {
+      background: #232f3e;
+      color: #fff;
+    }
+
+    .aws-live-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #10b981;
+    }
+
+    /* -------------------------------------------------------------------
+       2. AWS AppLayout Architecture (Left Sidebar + Main Canvas)
+       ------------------------------------------------------------------- */
+    .aws-layout {
+      display: flex;
+      flex: 1;
+      min-height: calc(100vh - 48px - 34px);
+    }
+
+    /* Collapsible Left Navigation Sidebar */
+    .aws-sidebar {
+      width: 250px;
+      background: var(--aws-sidebar-bg);
+      border-right: 1px solid var(--aws-sidebar-border);
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      transition: width 0.2s ease, transform 0.2s ease;
+      z-index: 500;
+    }
+
+    .aws-sidebar.collapsed {
+      width: 56px;
+    }
+
+    .aws-sidebar-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--aws-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .aws-sidebar-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--aws-text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .aws-sidebar.collapsed .aws-sidebar-title span {
+      display: none;
+    }
+
+    .aws-sidebar-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--aws-text-muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .aws-sidebar-toggle-btn:hover {
+      background: var(--aws-surface-hover);
+      color: var(--aws-text);
+    }
+
+    .aws-nav-menu {
+      list-style: none;
+      padding: 8px 0;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .aws-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--aws-text-muted);
+      cursor: pointer;
+      text-decoration: none;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .aws-nav-item:hover {
+      background: var(--aws-surface-hover);
+      color: var(--aws-text);
+    }
+
+    .aws-nav-item.active {
+      color: var(--aws-orange);
+      font-weight: 700;
+      background: var(--aws-sidebar-active-bg);
+      border-left-color: var(--aws-orange);
+    }
+
+    .aws-nav-item-icon {
+      font-size: 16px;
+      min-width: 20px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .aws-sidebar.collapsed .aws-nav-item span.nav-text,
+    .aws-sidebar.collapsed .aws-nav-item span.nav-badge {
+      display: none;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: #e2e8f0;
+      color: #334155;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 10px;
+    }
+
+    [data-theme="dark"] .nav-badge {
+      background: #334155;
+      color: #cbd5e1;
+    }
+
+    .aws-nav-item.active .nav-badge {
+      background: #fff2e8;
+      color: var(--aws-orange);
+    }
+
+    /* Main Content Area */
+    .aws-main-canvas {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Subnav / Breadcrumbs Bar */
+    .aws-subnav {
+      background: var(--aws-subnav-bg);
+      border-bottom: 1px solid var(--aws-subnav-border);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .aws-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--aws-text-muted);
+    }
+
+    .aws-breadcrumbs a {
+      color: var(--aws-link);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .aws-breadcrumbs a:hover {
+      color: var(--aws-link-hover);
+      text-decoration: underline;
+    }
+
+    .aws-breadcrumbs span.sep { color: var(--aws-text-dim); }
+    .aws-breadcrumbs span.current { color: var(--aws-text); font-weight: 600; }
+
+    .aws-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn-aws-primary {
+      background: var(--aws-orange);
+      color: #ffffff;
+      border: 1px solid var(--aws-orange);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+    }
+
+    .btn-aws-primary:hover {
+      background: var(--aws-orange-hover);
+      border-color: var(--aws-orange-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-aws-secondary {
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border-strong);
+      color: var(--aws-text);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-aws-secondary:hover {
+      background: var(--aws-surface-hover);
+      border-color: #545b64;
+    }
+
+    .btn-aws-sim {
+      background: #eff6ff;
+      border: 1px solid #93c5fd;
+      color: #1d4ed8;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    [data-theme="dark"] .btn-aws-sim {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
+    }
+
+    .btn-aws-sim:hover { background: #dbeafe; transform: translateY(-1px); }
+
+    /* Page Canvas */
+    .aws-content-container {
+      padding: 24px;
+      max-width: 1480px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* Page Header */
+    .aws-page-header {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .aws-page-title h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--aws-text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .aws-page-title p {
+      font-size: 13px;
+      color: var(--aws-text-muted);
+      margin-top: 4px;
+    }
+
+    .aws-meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff8e1;
+      border: 1px solid #ffd591;
+      color: #b8860b;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    [data-theme="dark"] .aws-meta-badge {
+      background: rgba(255, 153, 0, 0.12);
+      border-color: rgba(255, 153, 0, 0.3);
+      color: var(--aws-smile);
+    }
+
+    /* Dynamic Alert Flashbar */
+    .aws-alert {
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      border: 1px solid transparent;
+      box-shadow: var(--aws-card-shadow);
+    }
+
+    .aws-alert-warning {
+      background: var(--aws-amber-bg);
+      border-color: var(--aws-amber-border);
+      color: #543b00;
+    }
+
+    [data-theme="dark"] .aws-alert-warning { color: #fef08a; }
+
+    .aws-alert-success {
+      background: var(--aws-green-bg);
+      border-color: var(--aws-green-border);
+      color: #07521e;
+    }
+
+    [data-theme="dark"] .aws-alert-success { color: #86efac; }
+
+    /* KPI Cards Grid */
+    .aws-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .aws-kpi-card {
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border);
+      border-radius: var(--aws-border-radius-container);
+      padding: 18px 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--aws-card-shadow);
+      transition: all 0.15s;
+    }
+
+    .aws-kpi-card:hover {
+      border-color: var(--aws-border-strong);
+      transform: translateY(-1px);
+    }
+
+    .aws-kpi-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: #94a3b8;
+    }
+
+    .aws-kpi-card.spend-card::before { background: var(--aws-red); }
+    .aws-kpi-card.savings-card::before { background: var(--aws-green); }
+    .aws-kpi-card.waste-card::before { background: var(--aws-amber); }
+    .aws-kpi-card.compute-card::before { background: var(--aws-blue); }
+    .aws-kpi-card.storage-card::before { background: var(--aws-purple); }
+
+    .aws-kpi-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: var(--aws-text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .aws-kpi-val {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--aws-text);
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .aws-kpi-val span.unit {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--aws-text-muted);
+    }
+
+    .aws-kpi-sub {
+      font-size: 12px;
+      color: var(--aws-text-muted);
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Cloudscape Status Indicator Component (https://cloudscape.design/components/status-indicator/) */
+    .awsui-status-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.2;
+      vertical-align: middle;
+    }
+
+    .awsui-status-indicator svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .awsui-status-indicator.status-success { color: var(--aws-green); }
+    .awsui-status-indicator.status-warning { color: var(--aws-amber); }
+    .awsui-status-indicator.status-error { color: var(--aws-red); }
+    .awsui-status-indicator.status-info { color: var(--aws-blue); }
+    .awsui-status-indicator.status-in-progress { color: var(--aws-blue); }
+
+    .awsui-status-spinner {
+      width: 12px;
+      height: 12px;
+      border: 2px solid rgba(0, 108, 224, 0.25);
+      border-top-color: var(--aws-blue);
+      border-radius: 50%;
+      animation: awsui-spin 0.8s linear infinite;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    @keyframes awsui-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .pill-red { background: var(--aws-red-bg); color: var(--aws-red); border: 1px solid var(--aws-red-border); }
+    .pill-green { background: var(--aws-green-bg); color: var(--aws-green); border: 1px solid var(--aws-green-border); }
+    .pill-amber { background: var(--aws-amber-bg); color: var(--aws-amber); border: 1px solid var(--aws-amber-border); }
+    .pill-blue { background: var(--aws-blue-bg); color: var(--aws-blue); border: 1px solid var(--aws-blue-border); }
+
+    /* -------------------------------------------------------------------
+       3. Interactive Cost Explorer Multi-Month Stacked Spend Graph
+       ------------------------------------------------------------------- */
+    .cost-chart-card {
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border);
+      border-radius: var(--aws-border-radius-container);
+      padding: 22px;
+      margin-bottom: 24px;
+      box-shadow: var(--aws-card-shadow);
+    }
+
+    .cost-chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cost-chart-header h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--aws-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cost-chart-legend {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--aws-text-muted);
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    /* SVG Chart Container */
+    .svg-chart-container {
+      width: 100%;
+      height: 180px;
+      position: relative;
+    }
+
+    /* Selection Toolbar for Tables */
+    .table-selection-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      padding: 10px 18px;
+      border-radius: 6px;
+      margin-bottom: 12px;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #1e40af;
+    }
+
+    [data-theme="dark"] .table-selection-banner {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: rgba(59, 130, 246, 0.35);
+      color: #93c5fd;
+    }
+
+    .table-selection-banner.visible {
+      display: flex;
+    }
+
+    /* -------------------------------------------------------------------
+       4. Cloudscape Tables
+       ------------------------------------------------------------------- */
+    .aws-table-container {
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border);
+      border-radius: var(--aws-border-radius-container);
+      overflow: hidden;
+      margin-bottom: 24px;
+      box-shadow: var(--aws-card-shadow);
+    }
+
+    .aws-table-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--aws-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: var(--aws-surface);
+    }
+
+    .aws-table-header h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--aws-text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .aws-table-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-icon-preferences {
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border-strong);
+      color: var(--aws-text-muted);
+      width: 32px;
+      height: 32px;
+      border-radius: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .btn-icon-preferences:hover {
+      background: var(--aws-surface-hover);
+      color: var(--aws-text);
+      border-color: #545b64;
+    }
+
+    .cloudscape-badge-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border-strong);
+      color: var(--aws-link);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 16px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .cloudscape-badge-link:hover {
+      background: var(--aws-surface-hover);
+      color: var(--aws-link-hover);
+      border-color: var(--aws-link);
+    }
+
+    table.aws-table.compact td,
+    table.aws-table.compact th {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    table.aws-table.wrap-cells td {
+      white-space: normal;
+    }
+
+    .aws-table-filter input {
+      background: var(--aws-input-bg);
+      border: 1px solid var(--aws-input-border);
+      border-radius: 4px;
+      padding: 6px 12px;
+      color: var(--aws-text);
+      font-size: 12px;
+      width: 240px;
+      outline: none;
+    }
+
+    .aws-table-filter input:focus {
+      border-color: var(--aws-orange);
+      box-shadow: 0 0 0 1px var(--aws-orange);
+    }
+
+    table.aws-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    table.aws-table th {
+      background: var(--aws-surface-alt);
+      color: var(--aws-text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--aws-border);
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    table.aws-table th:hover {
+      color: var(--aws-text);
+    }
+
+    table.aws-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--aws-border-light);
+      color: var(--aws-text);
+      vertical-align: middle;
+    }
+
+    table.aws-table tr:hover td {
+      background: var(--aws-surface-hover);
+    }
+
+    .code-tag {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      background: var(--aws-code-bg);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--aws-border-strong);
+      color: var(--aws-code-text);
+    }
+
+    .btn-action-small {
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border-strong);
+      color: var(--aws-text);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s;
+    }
+
+    .btn-action-small:hover {
+      background: var(--aws-surface-hover);
+      border-color: #545b64;
+    }
+
+    .btn-action-execute {
+      background: var(--aws-orange);
+      border-color: var(--aws-orange);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .btn-action-execute:hover {
+      background: var(--aws-orange-hover);
+    }
+
+    .aws-table-footer {
+      padding: 10px 20px;
+      background: var(--aws-surface-alt);
+      border-top: 1px solid var(--aws-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      color: var(--aws-text-muted);
+    }
+
+    /* -------------------------------------------------------------------
+       5. Switch Multi-Agent War Room Live Feed with Avatars
+       ------------------------------------------------------------------- */
+    .agent-avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid var(--aws-border-strong);
+      vertical-align: middle;
+    }
+
+    .chat-bubble-row {
+      display: flex;
+      gap: 12px;
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--aws-border-light);
+      font-size: 13px;
+      transition: background 0.1s;
+    }
+
+    .chat-bubble-row:hover {
+      background: var(--aws-surface-hover);
+    }
+
+    .chat-author-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .chat-author-name {
+      font-weight: 700;
+      color: var(--aws-text);
+    }
+
+    .chat-author-role {
+      font-size: 11px;
+      color: var(--aws-text-muted);
+    }
+
+    .chat-text {
+      color: var(--aws-text);
+      line-height: 1.5;
+    }
+
+    /* -------------------------------------------------------------------
+       6. Interactive CloudShell Terminal Drawer
+       ------------------------------------------------------------------- */
+    .aws-cloudshell-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 280px;
+      background: #0f172a;
+      border-top: 2px solid var(--aws-orange);
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: transform 0.25s ease-in-out;
+    }
+
+    .aws-cloudshell-drawer.open {
+      transform: translateY(0);
+    }
+
+    .cloudshell-header {
+      background: #1e293b;
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 600;
+      border-bottom: 1px solid #334155;
+    }
+
+    .cloudshell-body {
+      flex: 1;
+      padding: 12px 16px;
+      overflow-y: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      color: #38bdf8;
+      line-height: 1.5;
+    }
+
+    .cloudshell-prompt-line {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px 10px;
+      background: #0f172a;
+      border-top: 1px solid #1e293b;
+    }
+
+    .cloudshell-prompt-label {
+      color: #4ade80;
+      font-family: monospace;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .cloudshell-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #f1f5f9;
+      font-family: monospace;
+      font-size: 12px;
+    }
+
+    /* Quick command chips on CloudShell */
+    .chip-btn {
+      background: #334155;
+      border: 1px solid #475569;
+      color: #cbd5e1;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .chip-btn:hover {
+      background: #475569;
+      color: #fff;
+    }
+
+    /* -------------------------------------------------------------------
+       7. Authentic Cloudscape Confirmation Modal Dialog
+       ------------------------------------------------------------------- */
+    .aws-modal-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.95);
+      width: 540px;
+      max-width: calc(100vw - 32px);
+      background: var(--aws-surface);
+      border: 1px solid var(--aws-border-strong);
+      border-radius: var(--aws-border-radius-container);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+      z-index: 2500;
+      display: none;
+      opacity: 0;
+      transition: all 0.2s ease;
+    }
+
+    .aws-modal-dialog.open {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--aws-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--aws-text);
+    }
+
+    .modal-body {
+      padding: 20px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--aws-text);
+    }
+
+    .modal-impact-box {
+      background: var(--aws-surface-alt);
+      border: 1px solid var(--aws-border);
+      border-radius: 6px;
+      padding: 12px 16px;
+      margin: 14px 0;
+    }
+
+    .modal-footer {
+      padding: 14px 20px;
+      border-top: 1px solid var(--aws-border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: var(--aws-surface-alt);
+    }
+
+    /* -------------------------------------------------------------------
+       8. Toast Notification System
+       ------------------------------------------------------------------- */
+    .toast-container {
+      position: fixed;
+      top: 60px;
+      right: 20px;
+      z-index: 3000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast-card {
+      background: var(--aws-surface);
+      border-left: 4px solid var(--aws-green);
+      border-top: 1px solid var(--aws-border);
+      border-right: 1px solid var(--aws-border);
+      border-bottom: 1px solid var(--aws-border);
+      border-radius: 4px;
+      padding: 12px 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      min-width: 300px;
+      max-width: 420px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      animation: slideIn 0.25s ease;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    /* Footer */
+    .aws-footer {
+      background: var(--aws-nav-bg);
+      border-top: 1px solid var(--aws-nav-border);
+      padding: 8px 24px;
+      font-size: 11px;
+      color: #94a3b8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: var(--aws-modal-overlay);
+      z-index: 1400;
+      display: none;
+    }
+    .modal-backdrop.open { display: block; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Global AWS Navigation Bar -->
+  <header class="aws-nav">
+    <div class="aws-nav-left">
+      <a class="aws-logo-group" href="/dashboard" title="AWS Management Console">
+        <svg viewBox="0 0 304 182" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <!-- AWS Official Wordmark: a, w, s in White -->
+            <path fill="#FFFFFF" d="M86.4,66.4c0,3.7,0.4,6.7,1.1,8.9c0.8,2.2,1.8,4.6,3.2,7.2c0.5,0.8,0.7,1.6,0.7,2.3c0,1-0.6,2-1.9,3l-6.3,4.2c-0.9,0.6-1.8,0.9-2.6,0.9c-1,0-2-0.5-3-1.4C76.2,90,75,88.4,74,86.8c-1-1.7-2-3.6-3.1-5.9c-7.8,9.2-17.6,13.8-29.4,13.8c-8.4,0-15.1-2.4-20-7.2c-4.9-4.8-7.4-11.2-7.4-19.2c0-8.5,3-15.4,9.1-20.6c6.1-5.2,14.2-7.8,24.5-7.8c3.4,0,6.9,0.3,10.6,0.8c3.7,0.5,7.5,1.3,11.5,2.2v-7.3c0-7.6-1.6-12.9-4.7-16c-3.2-3.1-8.6-4.6-16.3-4.6c-3.5,0-7.1,0.4-10.8,1.3c-3.7,0.9-7.3,2-10.8,3.4c-1.6,0.7-2.8,1.1-3.5,1.3c-0.7,0.2-1.2,0.3-1.6,0.3c-1.4,0-2.1-1-2.1-3.1v-4.9c0-1.6,0.2-2.8,0.7-3.5c0.5-0.7,1.4-1.4,2.8-2.1c3.5-1.8,7.7-3.3,12.6-4.5c4.9-1.3,10.1-1.9,15.6-1.9c11.9,0,20.6,2.7,26.2,8.1c5.5,5.4,8.3,13.6,8.3,24.6V66.4z M45.8,81.6c3.3,0,6.7-0.6,10.3-1.8c3.6-1.2,6.8-3.4,9.5-6.4c1.6-1.9,2.8-4,3.4-6.4c0.6-2.4,1-5.3,1-8.7v-4.2c-2.9-0.7-6-1.3-9.2-1.7c-3.2-0.4-6.3-0.6-9.4-0.6c-6.7,0-11.6,1.3-14.9,4c-3.3,2.7-4.9,6.5-4.9,11.5c0,4.7,1.2,8.2,3.7,10.6C37.7,80.4,41.2,81.6,45.8,81.6z M126.1,92.4c-1.8,0-3-0.3-3.8-1c-0.8-0.6-1.5-2-2.1-3.9L96.7,10.2c-0.6-2-0.9-3.3-0.9-4c0-1.6,0.8-2.5,2.4-2.5h9.8c1.9,0,3.2,0.3,3.9,1c0.8,0.6,1.4,2,2,3.9l16.8,66.2l15.6-66.2c0.5-2,1.1-3.3,1.9-3.9c0.8-0.6,2.2-1,4-1h8c1.9,0,3.2,0.3,4,1c0.8,0.6,1.5,2,1.9,3.9l15.8,67l17.3-67c0.6-2,1.3-3.3,2-3.9c0.8-0.6,2.1-1,3.9-1h9.3c1.6,0,2.5,0.8,2.5,2.5c0,0.5-0.1,1-0.2,1.6c-0.1,0.6-0.3,1.4-0.7,2.5l-24.1,77.3c-0.6,2-1.3,3.3-2.1,3.9c-0.8,0.6-2.1,1-3.8,1h-8.6c-1.9,0-3.2-0.3-4-1c-0.8-0.7-1.5-2-1.9-4L156,23l-15.4,64.4c-0.5,2-1.1,3.3-1.9,4c-0.8,0.7-2.2,1-4,1H126.1z M254.6,95.1c-5.2,0-10.4-0.6-15.4-1.8c-5-1.2-8.9-2.5-11.5-4c-1.6-0.9-2.7-1.9-3.1-2.8c-0.4-0.9-0.6-1.9-0.6-2.8v-5.1c0-2.1,0.8-3.1,2.3-3.1c0.6,0,1.2,0.1,1.8,0.3c0.6,0.2,1.5,0.6,2.5,1c3.4,1.5,7.1,2.7,11,3.5c4,0.8,7.9,1.2,11.9,1.2c6.3,0,11.2-1.1,14.6-3.3c3.4-2.2,5.2-5.4,5.2-9.5c0-2.8-0.9-5.1-2.7-7c-1.8-1.9-5.2-3.6-10.1-5.2L246,52c-7.3-2.3-12.7-5.7-16-10.2c-3.3-4.4-5-9.3-5-14.5c0-4.2,0.9-7.9,2.7-11.1c1.8-3.2,4.2-6,7.2-8.2c3-2.3,6.4-4,10.4-5.2c4-1.2,8.2-1.7,12.6-1.7c2.2,0,4.5,0.1,6.7,0.4c2.3,0.3,4.4,0.7,6.5,1.1c2,0.5,3.9,1,5.7,1.6c1.8,0.6,3.2,1.2,4.2,1.8c1.4,0.8,2.4,1.6,3,2.5c0.6,0.8,0.9,1.9,0.9,3.3v4.7c0,2.1-0.8,3.2-2.3,3.2c-0.8,0-2.1-0.4-3.8-1.2c-5.7-2.6-12.1-3.9-19.2-3.9c-5.7,0-10.2,0.9-13.3,2.8c-3.1,1.9-4.7,4.8-4.7,8.9c0,2.8,1,5.2,3,7.1c2,1.9,5.7,3.8,11,5.5l14.2,4.5c7.2,2.3,12.4,5.5,15.5,9.6c3.1,4.1,4.6,8.8,4.6,14c0,4.3-0.9,8.2-2.6,11.6c-1.8,3.4-4.2,6.4-7.3,8.8c-3.1,2.5-6.8,4.3-11.1,5.6C264.4,94.4,259.7,95.1,254.6,95.1z"/>
+            <!-- Amazon Smile Curve & Arrow in Amazon Orange #FF9900 -->
+            <g>
+              <path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M273.5,143.7c-32.9,24.3-80.7,37.2-121.8,37.2c-57.6,0-109.5-21.3-148.7-56.7c-3.1-2.8-0.3-6.6,3.4-4.4c42.4,24.6,94.7,39.5,148.8,39.5c36.5,0,76.6-7.6,113.5-23.2C274.2,133.6,278.9,139.7,273.5,143.7z"/>
+              <path fill="#FF9900" fill-rule="evenodd" clip-rule="evenodd" d="M287.2,128.1c-4.2-5.4-27.8-2.6-38.5-1.3c-3.2,0.4-3.7-2.4-0.8-4.5c18.8-13.2,49.7-9.4,53.3-5c3.6,4.5-1,35.4-18.6,50.2c-2.7,2.3-5.3,1.1-4.1-1.9C282.5,155.7,291.4,133.4,287.2,128.1z"/>
+            </g>
+          </g>
+        </svg>
+      </a>
+
+      <button class="aws-services-btn" onclick="openServicesMega()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <circle cx="4" cy="4" r="2.5"/><circle cx="12" cy="4" r="2.5"/><circle cx="20" cy="4" r="2.5"/>
+          <circle cx="4" cy="12" r="2.5"/><circle cx="12" cy="12" r="2.5"/><circle cx="20" cy="12" r="2.5"/>
+          <circle cx="4" cy="20" r="2.5"/><circle cx="12" cy="20" r="2.5"/><circle cx="20" cy="20" r="2.5"/>
+        </svg>
+        Services
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+      </button>
+
+      <div class="aws-search-bar">
+        <span class="aws-search-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </span>
+        <input type="text" placeholder="Search for services, features, and docs [Alt+S]" id="awsSearchInput" onkeydown="handleSearch(event)">
+        <span class="aws-search-shortcut">Alt+S</span>
+      </div>
+    </div>
+
+    <div class="aws-nav-right">
+      <button class="aws-theme-toggle" onclick="toggleTheme()" id="themeToggleBtn" title="Toggle Light/Dark Theme">
+        <span id="themeIcon">☀️</span>
+        <span id="themeLabel">Light</span>
+      </button>
+
+      <button class="aws-nav-icon-btn" title="AWS CloudShell" onclick="toggleCloudShell()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+        </svg>
+      </button>
+
+      <button class="aws-nav-icon-btn" title="AWS Notifications" onclick="showNotification('🔔 1 Cost Anomaly Warning: Staging spend exceeds baseline by +76.0%')">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+        </svg>
+        <span class="aws-nav-badge" id="navNotificationBadge">1</span>
+      </button>
+
+      <div class="aws-nav-dropdown-btn" title="Active AWS Region">
+        <span class="aws-live-dot"></span>
+        <span>us-east-1 (N. Virginia)</span>
+      </div>
+
+      <div class="aws-nav-dropdown-btn" title="IAM Account Context">
+        <span>Staging-Admin @ 1234-5678-9012</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- AWS AppLayout (Left Collapsible Sidebar + Canvas) -->
+  <div class="aws-layout">
+
+    <!-- Left Collapsible Sidebar Navigation -->
+    <aside class="aws-sidebar" id="awsSidebar">
+      <div class="aws-sidebar-header">
+        <div class="aws-sidebar-title">
+          <span>AWS Cost Management</span>
+        </div>
+        <button class="aws-sidebar-toggle-btn" onclick="toggleSidebar()" title="Collapse / Expand Navigation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" id="sidebarToggleIcon">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="aws-nav-menu">
+        <li>
+          <a class="aws-nav-item active" onclick="navTo('overview', this)">
+            <span class="aws-nav-item-icon">🎯</span>
+            <span class="nav-text">Optimization Hub</span>
+            <span class="nav-badge" id="sideBadgeRec">3</span>
+          </a>
+        </li>
+        <li>
+          <a class="aws-nav-item" onclick="navTo('cost-explorer', this)">
+            <span class="aws-nav-item-icon">📊</span>
+            <span class="nav-text">Cost Explorer</span>
+          </a>
+        </li>
+        <li>
+          <a class="aws-nav-item" onclick="navTo('eks', this)">
+            <span class="aws-nav-item-icon">☸️</span>
+            <span class="nav-text">EKS Workloads</span>
+            <span class="nav-badge" id="sideBadgeEks">16</span>
+          </a>
+        </li>
+        <li>
+          <a class="aws-nav-item" onclick="navTo('rds', this)">
+            <span class="aws-nav-item-icon">🗄️</span>
+            <span class="nav-text">RDS PostgreSQL</span>
+            <span class="nav-badge">4</span>
+          </a>
+        </li>
+        <li>
+          <a class="aws-nav-item" onclick="navTo('ebs', this)">
+            <span class="aws-nav-item-icon">💾</span>
+            <span class="nav-text">Orphaned EBS</span>
+            <span class="nav-badge" id="sideBadgeEbs">18</span>
+          </a>
+        </li>
+        <li>
+          <a class="aws-nav-item" onclick="navTo('snapshots', this)">
+            <span class="aws-nav-item-icon">📸</span>
+            <span class="nav-text">Safety Snapshots</span>
+            <span class="nav-badge" id="sideBadgeSnap">0</span>
+          </a>
+        </li>
+        <li>
+          <a class="aws-nav-item" onclick="navTo('logs', this)">
+            <span class="aws-nav-item-icon">📜</span>
+            <span class="nav-text">CloudTrail Stream</span>
+          </a>
+        </li>
+        <li>
+          <a class="aws-nav-item" onclick="navTo('war-room', this)" style="border-left-color: var(--aws-purple);">
+            <span class="aws-nav-item-icon">⚡</span>
+            <span class="nav-text">Switch War Room</span>
+            <span class="nav-badge" style="background:#f3e8ff; color:#7c3aed;">LIVE</span>
+          </a>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Main Canvas -->
+    <div class="aws-main-canvas">
+
+      <!-- Breadcrumbs Subnav -->
+      <div class="aws-subnav">
+        <div class="aws-breadcrumbs">
+          <a href="/dashboard">AWS Console</a>
+          <span class="sep">&gt;</span>
+          <a href="/dashboard">AWS Cost Management</a>
+          <span class="sep">&gt;</span>
+          <a href="/dashboard" id="crumbService">Cost Optimization Hub</a>
+          <span class="sep">&gt;</span>
+          <span class="current" id="crumbTarget">staging-us-east-1</span>
+        </div>
+
+        <div class="aws-actions-group">
+          <a href="https://cloudscape.design" target="_blank" rel="noopener noreferrer" class="cloudscape-badge-link" title="Explore AWS Cloudscape Design System">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Cloudscape Design</span>
+          </a>
+          <button class="btn-aws-secondary" onclick="fetchState()" title="Refresh telemetry">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            Refresh
+          </button>
+          <button class="btn-aws-secondary" onclick="promptResetModal()" title="Reset to initial $42,600 outage baseline">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+            Reset Outage State
+          </button>
+          <button class="btn-aws-sim" onclick="simulateWarRoom()" title="Simulate the autonomous multi-agent war room audit sequence">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            ⚡ Simulate War Room Audit
+          </button>
+          <button class="btn-aws-primary" onclick="promptRemediationModal()" title="Execute all right-sizing recommendations">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Execute All Remediations
+          </button>
+        </div>
+      </div>
+
+      <!-- Content Container -->
+      <main class="aws-content-container">
+
+        <!-- Page Header -->
+        <div class="aws-page-header">
+          <div class="aws-page-title">
+            <h1 id="pageTitle">
+              AWS Cost Optimization Hub
+              <span class="aws-meta-badge">⚡ Switch Multi-Agent War Room Active</span>
+            </h1>
+            <p>Real-time telemetry and automated right-sizing recommendations for account <strong>1234-5678-9012</strong> (staging-us-east-1).</p>
+          </div>
+          <div>
+            <div style="font-size:12px; color:var(--aws-text-muted); background:var(--aws-surface); border:1px solid var(--aws-border); padding:6px 14px; border-radius:20px; box-shadow:var(--aws-card-shadow);">
+              Connected Agents: <strong style="color:var(--aws-blue);">@auditor</strong> &bull; <strong style="color:var(--aws-orange);">@metrics</strong> &bull; <strong style="color:var(--aws-green);">@coder</strong> &bull; <strong style="color:var(--aws-purple);">@dev</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic Flashbar Alert -->
+        <div id="awsAlertBanner" class="aws-alert aws-alert-warning">
+          <div style="font-size:20px; line-height:1;" id="alertIcon">⚠️</div>
+          <div style="flex:1;">
+            <h4 id="alertTitle" style="font-size:14px; font-weight:700; margin-bottom:4px;">Cost Anomaly Detected: Trailing Spend Exceeds Budget Baseline by +76.0%</h4>
+            <p id="alertBody" style="font-size:13px; line-height:1.5;">
+              Trailing 30-day spend for staging-us-east-1 is <strong>$42,600/month</strong> against a budget threshold of <strong>$24,200/month</strong>.
+              Switch FinOps agents have identified <strong>$18,400/month ($220,800/year)</strong> in unattached EBS storage, idle EKS worker nodes, and over-provisioned RDS instances.
+            </p>
+          </div>
+          <button class="btn-action-small btn-action-execute" id="bannerActionBtn" onclick="promptRemediationModal()">Execute Fixes</button>
+        </div>
+
+        <!-- AWS KPI Metric Cards Grid -->
+        <div class="aws-kpi-grid">
+          <div class="aws-kpi-card spend-card">
+            <div class="aws-kpi-label">
+              <span>Monthly Spend Run-Rate</span>
+              <span id="spendStatusPill" class="awsui-status-indicator status-error">
+                <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d13212"/><path d="M8 4.5v4.5M8 11.5v0.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span>Over Budget</span>
+              </span>
+            </div>
+            <div class="aws-kpi-val" id="metricMonthlySpend">
+              $42,600 <span class="unit">/ month</span>
+            </div>
+            <div class="aws-kpi-sub">
+              <span>Baseline Target:</span> <strong id="metricBudgetBaseline">$24,200 / mo</strong>
+            </div>
+          </div>
+
+          <div class="aws-kpi-card waste-card">
+            <div class="aws-kpi-label">
+              <span>Identified Waste</span>
+              <span id="wasteStatusPill" class="awsui-status-indicator status-warning">
+                <svg viewBox="0 0 16 16"><path d="M8 1.5L1 14.5h14L8 1.5z" fill="#f59e0b"/><path d="M8 6v4M8 12v0.8" stroke="#161e2e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <span>Immediate Action</span>
+              </span>
+            </div>
+            <div class="aws-kpi-val" id="metricUnplannedWaste" style="color: var(--aws-amber);">
+              +$18,400 <span class="unit">/ month</span>
+            </div>
+            <div class="aws-kpi-sub">
+              <span>EKS: $9.6k | RDS: $6.4k | EBS: $2.4k</span>
+            </div>
+          </div>
+
+          <div class="aws-kpi-card savings-card">
+            <div class="aws-kpi-label">
+              <span>Realized Annual Savings</span>
+              <span id="savingsStatusPill" class="awsui-status-indicator status-success">
+                <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#00802f"/><path d="M4.5 8.2l2.3 2.3 4.5-4.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Target: $220.8k</span>
+              </span>
+            </div>
+            <div class="aws-kpi-val" id="metricAnnualSavings" style="color: var(--aws-green);">
+              $0 <span class="unit">/ year</span>
+            </div>
+            <div class="aws-kpi-sub" id="metricMonthlySavingsSub">
+              $0 / mo permanent savings
+            </div>
+          </div>
+
+          <div class="aws-kpi-card compute-card">
+            <div class="aws-kpi-label">
+              <span>EKS Staging Nodes</span>
+              <span id="eksStatusPill" class="awsui-status-indicator status-warning">
+                <svg viewBox="0 0 16 16"><path d="M8 1.5L1 14.5h14L8 1.5z" fill="#f59e0b"/><path d="M8 6v4M8 12v0.8" stroke="#161e2e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                <span>12 Idle Nodes</span>
+              </span>
+            </div>
+            <div class="aws-kpi-val" id="metricEksNodes">
+              16 <span class="unit">m6i.2xlarge</span>
+            </div>
+            <div class="aws-kpi-sub">
+              <span>Avg CPU: 4.2% | Target: 4 Nodes</span>
+            </div>
+          </div>
+
+          <div class="aws-kpi-card storage-card">
+            <div class="aws-kpi-label">
+              <span>Orphaned EBS Disks</span>
+              <span id="ebsStatusPill" class="awsui-status-indicator status-error">
+                <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d13212"/><path d="M8 4.5v4.5M8 11.5v0.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <span>18 Unattached</span>
+              </span>
+            </div>
+            <div class="aws-kpi-val" id="metricEbsVolumes">
+              18 <span class="unit">gp3 (30 TB)</span>
+            </div>
+            <div class="aws-kpi-sub" id="metricEbsSub">
+              Unattached &gt; 21 days | 0 IOPS
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Interactive Multi-Month Stacked Spend Graph -->
+        <div class="cost-chart-card">
+          <div class="cost-chart-header">
+            <h3>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+              AWS Cost Explorer &bull; Trailing 6-Month Invoiced Spend & Sizing Baseline
+            </h3>
+            <div class="cost-chart-legend">
+              <div class="legend-item"><span class="legend-dot" style="background:#0972d3;"></span><span>EKS Compute</span></div>
+              <div class="legend-item"><span class="legend-dot" style="background:#7c3aed;"></span><span>RDS PostgreSQL</span></div>
+              <div class="legend-item"><span class="legend-dot" style="background:#f59e0b;"></span><span>Orphaned EBS</span></div>
+              <div class="legend-item"><span class="legend-dot" style="background:#94a3b8;"></span><span>Base Infrastructure</span></div>
+            </div>
+          </div>
+
+          <!-- Dynamic SVG Stacked Bar Chart -->
+          <div class="svg-chart-container">
+            <svg viewBox="0 0 800 170" width="100%" height="100%" preserveAspectRatio="none">
+              <!-- Y-axis Grid Lines -->
+              <line x1="50" y1="20" x2="780" y2="20" stroke="var(--aws-border)" stroke-dasharray="4"/>
+              <line x1="50" y1="65" x2="780" y2="65" stroke="var(--aws-border)" stroke-dasharray="4"/>
+              <line x1="50" y1="110" x2="780" y2="110" stroke="var(--aws-border)" stroke-dasharray="4"/>
+              <line x1="50" y1="145" x2="780" y2="145" stroke="var(--aws-border)"/>
+
+              <!-- Y-axis Labels -->
+              <text x="42" y="24" fill="var(--aws-text-dim)" font-size="10" text-anchor="end">$45k</text>
+              <text x="42" y="69" fill="var(--aws-text-dim)" font-size="10" text-anchor="end">$30k</text>
+              <text x="42" y="114" fill="var(--aws-text-dim)" font-size="10" text-anchor="end">$15k</text>
+              <text x="42" y="148" fill="var(--aws-text-dim)" font-size="10" text-anchor="end">$0</text>
+
+              <!-- Budget Baseline Threshold Reference Line -->
+              <line x1="50" y1="84" x2="780" y2="84" stroke="#10b981" stroke-width="1.5" stroke-dasharray="6"/>
+              <text x="778" y="80" fill="#10b981" font-size="10" font-weight="700" text-anchor="end">Budget Baseline: $24,200/mo</text>
+
+              <!-- Month 1: Jun ($24.2k) -->
+              <rect x="90" y="84" width="45" height="61" fill="#94a3b8" rx="2"/>
+              <rect x="90" y="60" width="45" height="24" fill="#0972d3" rx="2"/>
+              <text x="112" y="160" fill="var(--aws-text-muted)" font-size="11" text-anchor="middle">Jun</text>
+
+              <!-- Month 2: Jul ($24.2k) -->
+              <rect x="200" y="84" width="45" height="61" fill="#94a3b8" rx="2"/>
+              <rect x="200" y="60" width="45" height="24" fill="#0972d3" rx="2"/>
+              <text x="222" y="160" fill="var(--aws-text-muted)" font-size="11" text-anchor="middle">Jul</text>
+
+              <!-- Month 3: Aug ($24.2k) -->
+              <rect x="310" y="84" width="45" height="61" fill="#94a3b8" rx="2"/>
+              <rect x="310" y="60" width="45" height="24" fill="#0972d3" rx="2"/>
+              <text x="332" y="160" fill="var(--aws-text-muted)" font-size="11" text-anchor="middle">Aug</text>
+
+              <!-- Month 4: Sep ($24.8k) -->
+              <rect x="420" y="82" width="45" height="63" fill="#94a3b8" rx="2"/>
+              <rect x="420" y="58" width="45" height="24" fill="#0972d3" rx="2"/>
+              <text x="442" y="160" fill="var(--aws-text-muted)" font-size="11" text-anchor="middle">Sep</text>
+
+              <!-- Month 5: Oct (Spike $42.6k) -->
+              <rect x="530" y="100" width="45" height="45" fill="#94a3b8" rx="2"/>
+              <rect x="530" y="76" width="45" height="24" fill="#7c3aed" rx="2"/>
+              <rect x="530" y="68" width="45" height="8" fill="#f59e0b" rx="2"/>
+              <rect x="530" y="24" width="45" height="44" fill="#0972d3" rx="2"/>
+              <text x="552" y="18" fill="var(--aws-red)" font-size="10" font-weight="700" text-anchor="middle">⚠️ $42.6k</text>
+              <text x="552" y="160" fill="var(--aws-text-muted)" font-size="11" text-anchor="middle">Oct</text>
+
+              <!-- Month 6: Nov (Current Dynamic Bar) -->
+              <g id="chartCurrentMonthGroup">
+                <rect id="chartBarBase" x="640" y="100" width="45" height="45" fill="#94a3b8" rx="2"/>
+                <rect id="chartBarRds" x="640" y="76" width="45" height="24" fill="#7c3aed" rx="2"/>
+                <rect id="chartBarEbs" x="640" y="68" width="45" height="8" fill="#f59e0b" rx="2"/>
+                <rect id="chartBarEks" x="640" y="24" width="45" height="44" fill="#0972d3" rx="2"/>
+                <text id="chartSpendLabel" x="662" y="18" fill="var(--aws-red)" font-size="11" font-weight="800" text-anchor="middle">$42,600</text>
+              </g>
+              <text x="662" y="160" fill="var(--aws-text)" font-size="11" font-weight="700" text-anchor="middle">Nov (Current)</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- TAB 1: Overview & Recommendations -->
+        <div id="viewOverview" class="tab-view">
+          <div class="aws-table-container">
+            <div class="aws-table-header">
+              <div>
+                <h3>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  Optimization Opportunities <span class="nav-badge" id="overviewCountBadge">3</span>
+                </h3>
+                <div style="font-size:12px; color:var(--aws-text-muted); margin-top:2px;">Verified right-sizing actions for staging-us-east-1</div>
+              </div>
+              <div class="aws-table-actions">
+                <div class="aws-table-filter">
+                  <input type="text" placeholder="Filter recommendations..." id="overviewFilterInput" onkeyup="filterTable('overviewTable', this.value)">
+                </div>
+                <button class="btn-action-small" onclick="exportTableToCSV('overviewTable', 'aws_cost_recommendations.csv')">Export CSV</button>
+                <button class="btn-icon-preferences" onclick="openPreferencesModal()" title="Table preferences">⚙️</button>
+              </div>
+            </div>
+
+            <table class="aws-table" id="overviewTable">
+              <thead>
+                <tr>
+                  <th>Service / Resource</th>
+                  <th>Current Specification</th>
+                  <th>Telemetry Evidence</th>
+                  <th>Recommended Action</th>
+                  <th>Est. Monthly Savings</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <strong>Amazon EKS</strong><br>
+                    <span class="code-tag">staging-general-workloads</span>
+                  </td>
+                  <td id="eksSpecCell">16 x m6i.2xlarge</td>
+                  <td>Avg CPU: 4.2% | Peak RAM: 14.8%</td>
+                  <td>Downscale node pool to 4 nodes via Terraform PR #482</td>
+                  <td style="color: var(--aws-green); font-weight: 700;">$9,600 / mo</td>
+                  <td id="eksStatusCell">
+                    <span class="awsui-status-indicator status-warning">
+                      <svg viewBox="0 0 16 16"><path d="M8 1.5L1 14.5h14L8 1.5z" fill="#f59e0b"/><path d="M8 6v4M8 12v0.8" stroke="#161e2e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                      <span>Action Required</span>
+                    </span>
+                  </td>
+                  <td>
+                    <button class="btn-action-small btn-action-execute" id="btnEksAction" onclick="remediateTerraform()">
+                      Apply PR #482
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>Amazon RDS</strong><br>
+                    <span class="code-tag">staging-app-db-cluster</span>
+                  </td>
+                  <td id="rdsSpecCell">4 x db.r6g.2xlarge</td>
+                  <td>Active Conns &lt; 15 | p95 CPU: 6.1%</td>
+                  <td>Downsize instances to db.r6g.large (rolling resize)</td>
+                  <td style="color: var(--aws-green); font-weight: 700;">$6,400 / mo</td>
+                  <td id="rdsStatusCell">
+                    <span class="awsui-status-indicator status-warning">
+                      <svg viewBox="0 0 16 16"><path d="M8 1.5L1 14.5h14L8 1.5z" fill="#f59e0b"/><path d="M8 6v4M8 12v0.8" stroke="#161e2e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                      <span>Action Required</span>
+                    </span>
+                  </td>
+                  <td>
+                    <button class="btn-action-small btn-action-execute" id="btnRdsAction" onclick="remediateTerraform()">
+                      Downsize Class
+                    </button>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>Amazon EBS</strong><br>
+                    <span class="code-tag">18x gp3 volumes</span>
+                  </td>
+                  <td>30,000 GB Provisioned (gp3)</td>
+                  <td>Status: available (0 IOPS for 24 days)</td>
+                  <td>Create safety snapshot and terminate unattached volumes</td>
+                  <td style="color: var(--aws-green); font-weight: 700;">$2,400 / mo</td>
+                  <td id="ebsStatusCell">
+                    <span class="awsui-status-indicator status-error">
+                      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d13212"/><path d="M8 4.5v4.5M8 11.5v0.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+                      <span>18 Orphaned</span>
+                    </span>
+                  </td>
+                  <td>
+                    <button class="btn-action-small btn-action-execute" id="btnEbsAction" onclick="remediateVolumes()">
+                      Snapshot & Purge
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="aws-table-footer">
+              <span>Showing 3 optimization opportunities (Potential Annual ROI: <strong>$220,800/yr</strong>)</span>
+              <span>Policy: Zero-downtime, safe snapshots required</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: Cost Explorer Dedicated View -->
+        <div id="viewCostExplorer" class="tab-view" style="display:none;">
+          <div class="aws-table-container">
+            <div class="aws-table-header">
+              <div>
+                <h3>📊 Cost Explorer &bull; Service Breakdown Summary</h3>
+                <div style="font-size:12px; color:var(--aws-text-muted); margin-top:2px;">Monthly unblended costs and waste breakdown</div>
+              </div>
+              <div class="aws-table-actions">
+                <button class="btn-action-small" onclick="exportTableToCSV('costBreakdownTable', 'aws_cost_explorer_breakdown.csv')">Export CSV</button>
+                <button class="btn-icon-preferences" onclick="openPreferencesModal()" title="Table preferences">⚙️</button>
+              </div>
+            </div>
+            <table class="aws-table" id="costBreakdownTable">
+              <thead>
+                <tr>
+                  <th>Service Name</th>
+                  <th>Usage Type</th>
+                  <th>Current Monthly Spend</th>
+                  <th>Baseline Target</th>
+                  <th>Identified Waste</th>
+                  <th>Efficiency Rating</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Amazon Elastic Kubernetes Service (EKS)</strong></td>
+                  <td>EC2 BoxUsage:m6i.2xlarge</td>
+                  <td>$16,000 / mo</td>
+                  <td>$6,400 / mo</td>
+                  <td style="color:var(--aws-red); font-weight:700;">+$9,600 / mo</td>
+                  <td>
+                    <span class="awsui-status-indicator status-error">
+                      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d13212"/><path d="M8 4.5v4.5M8 11.5v0.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+                      <span>Over-Provisioned (12 Idle)</span>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Amazon Relational Database Service (RDS)</strong></td>
+                  <td>InstanceUsage:db.r6g.2xlarge</td>
+                  <td>$8,000 / mo</td>
+                  <td>$1,600 / mo</td>
+                  <td style="color:var(--aws-red); font-weight:700;">+$6,400 / mo</td>
+                  <td>
+                    <span class="awsui-status-indicator status-warning">
+                      <svg viewBox="0 0 16 16"><path d="M8 1.5L1 14.5h14L8 1.5z" fill="#f59e0b"/><path d="M8 6v4M8 12v0.8" stroke="#161e2e" stroke-width="1.6" stroke-linecap="round"/></svg>
+                      <span>Downsize Opportunity</span>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Amazon Elastic Block Store (EBS)</strong></td>
+                  <td>VolumeUsage.gp3 (30,000 GB)</td>
+                  <td>$2,400 / mo</td>
+                  <td>$0 / mo</td>
+                  <td style="color:var(--aws-red); font-weight:700;">+$2,400 / mo</td>
+                  <td>
+                    <span class="awsui-status-indicator status-error">
+                      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d13212"/><path d="M8 4.5v4.5M8 11.5v0.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+                      <span>18 Unattached Volumes</span>
+                    </span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>Base Infrastructure & Networking</strong></td>
+                  <td>VPC, NAT Gateways, ELB, CloudWatch</td>
+                  <td>$16,200 / mo</td>
+                  <td>$16,200 / mo</td>
+                  <td style="color:var(--aws-green); font-weight:700;">$0 / mo</td>
+                  <td>
+                    <span class="awsui-status-indicator status-success">
+                      <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#00802f"/><path d="M4.5 8.2l2.3 2.3 4.5-4.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                      <span>Optimal Baseline</span>
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 3: EKS Workloads -->
+        <div id="viewEks" class="tab-view" style="display:none;">
+          <div class="aws-table-container">
+            <div class="aws-table-header">
+              <div>
+                <h3>☸️ EKS Worker Instances <span class="nav-badge" id="eksTableCountBadge">16</span></h3>
+                <div style="font-size:12px; color:var(--aws-text-muted); margin-top:2px;">Cluster: staging-general-workloads &bull; Controlled via Terraform PR #482</div>
+              </div>
+              <div class="aws-table-actions">
+                <button class="btn-action-small" onclick="exportTableToCSV('eksNodeTable', 'aws_eks_nodes.csv')">Export CSV</button>
+                <button class="btn-icon-preferences" onclick="openPreferencesModal()" title="Table preferences">⚙️</button>
+              </div>
+            </div>
+            <table class="aws-table" id="eksNodeTable">
+              <thead>
+                <tr>
+                  <th>Instance ID</th>
+                  <th>Node Name</th>
+                  <th>Instance Type</th>
+                  <th>Avg CPU</th>
+                  <th>Memory Used</th>
+                  <th>Lifecycle State</th>
+                  <th>Remediation Target</th>
+                </tr>
+              </thead>
+              <tbody id="eksNodeTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 4: RDS Databases -->
+        <div id="viewRds" class="tab-view" style="display:none;">
+          <div class="aws-table-container">
+            <div class="aws-table-header">
+              <div>
+                <h3>🗄️ Amazon RDS PostgreSQL Instances <span class="nav-badge">4</span></h3>
+                <div style="font-size:12px; color:var(--aws-text-muted); margin-top:2px;">Multi-AZ cluster: staging-app-db-cluster</div>
+              </div>
+              <div class="aws-table-actions">
+                <button class="btn-action-small" onclick="exportTableToCSV('rdsTable', 'aws_rds_instances.csv')">Export CSV</button>
+                <button class="btn-icon-preferences" onclick="openPreferencesModal()" title="Table preferences">⚙️</button>
+              </div>
+            </div>
+            <table class="aws-table" id="rdsTable">
+              <thead>
+                <tr>
+                  <th>DB Identifier</th>
+                  <th>Role</th>
+                  <th>Engine Version</th>
+                  <th>Current Class</th>
+                  <th>p95 CPU</th>
+                  <th>Monthly Cost</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="rdsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 5: Orphaned EBS Storage with Multi-Select -->
+        <div id="viewEbs" class="tab-view" style="display:none;">
+          <!-- Active Selection Banner -->
+          <div class="table-selection-banner" id="ebsSelectionBanner">
+            <div>
+              <strong id="ebsSelectedCountLabel">0 volumes selected</strong>
+              <span id="ebsSelectedSavingsLabel" style="margin-left: 8px;">(Potential Savings: $0/mo)</span>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <button class="btn-action-small btn-action-execute" onclick="purgeSelectedVolumes()">Snapshot & Purge Selected</button>
+              <button class="btn-action-small" onclick="clearEbsSelection()">Deselect All</button>
+            </div>
+          </div>
+
+          <div class="aws-table-container">
+            <div class="aws-table-header">
+              <div>
+                <h3>💾 Unattached Amazon EBS Volumes <span class="nav-badge" id="ebsTableCountBadge">18</span></h3>
+                <div style="font-size:12px; color:var(--aws-text-muted); margin-top:2px;">Orphaned persistent storage with 0 IOPS for &gt; 21 days</div>
+              </div>
+              <div class="aws-table-actions">
+                <button class="btn-action-small btn-action-execute" onclick="remediateVolumes()">
+                  Purge All & Snapshot (-$2.4k/mo)
+                </button>
+                <button class="btn-action-small" onclick="exportTableToCSV('ebsTable', 'aws_orphaned_ebs_volumes.csv')">Export CSV</button>
+                <button class="btn-icon-preferences" onclick="openPreferencesModal()" title="Table preferences">⚙️</button>
+              </div>
+            </div>
+            <table class="aws-table" id="ebsTable">
+              <thead>
+                <tr>
+                  <th style="width:36px;"><input type="checkbox" id="ebsSelectAllCheckbox" onchange="toggleSelectAllEbs(this.checked)"></th>
+                  <th onclick="sortEbsTable('id')">Volume ID ⇅</th>
+                  <th onclick="sortEbsTable('size_gb')">Size (GiB) ⇅</th>
+                  <th>Volume Type</th>
+                  <th>IOPS</th>
+                  <th>State</th>
+                  <th onclick="sortEbsTable('unattached_days')">Days Inactive ⇅</th>
+                  <th>Waste / mo</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="ebsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 6: Safety Snapshots -->
+        <div id="viewSnapshots" class="tab-view" style="display:none;">
+          <div class="aws-table-container">
+            <div class="aws-table-header">
+              <div>
+                <h3>📸 Amazon EBS Safety Snapshots <span class="nav-badge" id="snapTableCountBadge">0</span></h3>
+                <div style="font-size:12px; color:var(--aws-text-muted); margin-top:2px;">Automated 30-day pre-purge retention backups</div>
+              </div>
+              <div class="aws-table-actions">
+                <button class="btn-icon-preferences" onclick="openPreferencesModal()" title="Table preferences">⚙️</button>
+              </div>
+            </div>
+            <table class="aws-table" id="snapshotsTable">
+              <thead>
+                <tr>
+                  <th>Snapshot ID</th>
+                  <th>Source Volume</th>
+                  <th>Created Timestamp</th>
+                  <th>Retention Period</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="snapshotsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- TAB 7: CloudTrail Telemetry -->
+        <div id="viewLogs" class="tab-view" style="display:none;">
+          <div class="aws-table-container">
+            <div class="aws-table-header">
+              <div>
+                <h3>📜 AWS CloudTrail API Event Log</h3>
+                <div style="font-size:12px; color:var(--aws-text-muted); margin-top:2px;">Real-time management event telemetry for account 1234-5678-9012</div>
+              </div>
+              <div class="aws-table-actions">
+                <button class="btn-icon-preferences" onclick="openPreferencesModal()" title="Table preferences">⚙️</button>
+              </div>
+            </div>
+            <div id="cloudTrailLogList" style="padding:10px 20px;"></div>
+          </div>
+        </div>
+
+        <!-- TAB 8: Switch War Room Live Multi-Agent Dialogue -->
+        <div id="viewWarRoom" class="tab-view" style="display:none;">
+          <div class="aws-table-container">
+            <div class="aws-table-header" style="background:var(--aws-surface);">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <img src="/assets/pfp/bot_switch.png" class="agent-avatar" alt="Switch Bot">
+                <div>
+                  <h3 style="font-size:15px; font-weight:700;">#finops-cost-optimizer &bull; Autonomous Multi-Agent War Room</h3>
+                  <div style="font-size:11px; color:var(--aws-text-muted);">Connected via Switch Gateway &bull; Channel: Discord #finops-staging-us-east-1</div>
+                </div>
+              </div>
+              <div class="aws-table-actions">
+                <button class="btn-aws-sim" onclick="simulateWarRoom()">▶️ Replay War Room</button>
+              </div>
+            </div>
+
+            <!-- War Room Dialogue Stream -->
+            <div id="warRoomChatStream" style="max-height: 480px; overflow-y: auto;">
+              <!-- Populated dynamically via JS with avatars! -->
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Interactive AWS CloudShell Drawer -->
+  <div class="aws-cloudshell-drawer" id="cloudshellDrawer">
+    <div class="cloudshell-header">
+      <div style="display:flex; align-items:center; gap:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+        <span>AWS CloudShell (staging-us-east-1) &bull; Switch Bridge Connected</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <span class="chip-btn" onclick="runShellCmd('aws ce get-cost-and-usage')">aws ce</span>
+        <span class="chip-btn" onclick="runShellCmd('aws ec2 describe-volumes')">aws ec2</span>
+        <span class="chip-btn" onclick="runShellCmd('remediate all')">remediate all</span>
+        <span class="chip-btn" onclick="runShellCmd('reset')">reset</span>
+        <button class="btn-action-small" onclick="clearCloudshell()">Clear</button>
+        <button class="btn-action-small" onclick="toggleCloudShell()">✕</button>
+      </div>
+    </div>
+    <div class="cloudshell-body" id="cloudshellBody">
+      <div>AWS CloudShell v2.8.1 (x86_64 Linux 5.15)</div>
+      <div>Type <span style="color:#f59e0b;">'help'</span> for available commands, or click quick chips above.</div>
+      <div style="margin-top:6px;">[cloudshell@staging-us-east-1 ~]$ </div>
+    </div>
+    <div class="cloudshell-prompt-line">
+      <span class="cloudshell-prompt-label">[cloudshell@staging-us-east-1 ~]$</span>
+      <input type="text" class="cloudshell-input" id="cloudshellInput" placeholder="Enter AWS CLI command (e.g. help, aws ce get-cost-and-usage, remediate all)..." onkeydown="handleCloudshellKey(event)">
+    </div>
+  </div>
+
+  <!-- Cloudscape Confirmation Modal Dialog -->
+  <div class="modal-backdrop" id="modalBackdrop" onclick="closeAllModals()"></div>
+
+  <div class="aws-modal-dialog" id="remediationModal">
+    <div class="modal-header">
+      <h3>Execute Cloud Cost Remediation?</h3>
+      <button class="btn-action-small" onclick="closeAllModals()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>You are about to execute the verified recommendations agreed upon by <strong>@auditor</strong>, <strong>@metrics</strong>, <strong>@coder</strong>, and approved by <strong>Sarah Chen</strong> (Lead Cloud Architect):</p>
+      <div class="modal-impact-box">
+        <ul style="padding-left:18px; line-height:1.6;">
+          <li>Create <strong>18 safety snapshots</strong> (Retention=30Days) & terminate orphaned EBS volumes.</li>
+          <li>Apply Terraform <strong>PR #482</strong>: Downscale EKS node group from 16 to 4 nodes.</li>
+          <li>Downsize RDS cluster to <strong>db.r6g.large</strong> (rolling resize).</li>
+        </ul>
+        <div style="margin-top:10px; font-weight:700; color:var(--aws-green);">
+          Total Annualized Savings: +$220,800 / year (-$18,400 / mo)
+        </div>
+      </div>
+      <p style="font-size:12px; color:var(--aws-text-muted);">This action is fully reversible at any time using "Reset Outage State".</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-aws-secondary" onclick="closeAllModals()">Cancel</button>
+      <button class="btn-aws-primary" onclick="confirmExecuteRemediation()">Confirm & Execute</button>
+    </div>
+  </div>
+
+  <div class="aws-modal-dialog" id="resetModal">
+    <div class="modal-header">
+      <h3>Reset to Initial Outage State?</h3>
+      <button class="btn-action-small" onclick="closeAllModals()">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>This will restore the simulated cloud environment back to the over-budget outage state:</p>
+      <div class="modal-impact-box">
+        <ul style="padding-left:18px; line-height:1.6;">
+          <li>Monthly spend: <strong>$42,600 / mo</strong> (+76.0% over budget)</li>
+          <li>EKS cluster: <strong>16 x m6i.2xlarge nodes</strong> (12 idle)</li>
+          <li>Orphaned storage: <strong>18 unattached EBS volumes</strong> (30 TB)</li>
+          <li>Realized annual savings reset to: <strong>$0 / yr</strong></li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-aws-secondary" onclick="closeAllModals()">Cancel</button>
+      <button class="btn-action-small btn-action-execute" onclick="confirmResetState()">Reset Environment</button>
+    </div>
+  </div>
+
+  <!-- Cloudscape Table Collection Preferences Modal -->
+  <div class="aws-modal-dialog" id="preferencesModal">
+    <div class="modal-header">
+      <h3>Table Preferences</h3>
+      <button class="btn-action-small" onclick="closeAllModals()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div style="margin-bottom: 16px;">
+        <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px;">Page size</label>
+        <div style="display: flex; gap: 20px; font-size: 13px;">
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="radio" name="prefPageSize" value="10" checked onchange="changePageSize(10)"> 10 resources
+          </label>
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="radio" name="prefPageSize" value="25" onchange="changePageSize(25)"> 25 resources
+          </label>
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="radio" name="prefPageSize" value="50" onchange="changePageSize(50)"> 50 resources
+          </label>
+        </div>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px;">Content density</label>
+        <div style="display: flex; gap: 20px; font-size: 13px;">
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="radio" name="prefDensity" value="comfortable" checked onchange="setDensity('comfortable')"> Comfortable
+          </label>
+          <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+            <input type="radio" name="prefDensity" value="compact" onchange="setDensity('compact')"> Compact
+          </label>
+        </div>
+      </div>
+
+      <div>
+        <label style="font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px;">Text wrapping</label>
+        <label style="display: flex; align-items: center; gap: 6px; font-size: 13px; cursor: pointer;">
+          <input type="checkbox" id="prefWrapText" onchange="toggleWrapText(this.checked)"> Wrap lines in table cells
+        </label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-aws-primary" onclick="closeAllModals()">Confirm</button>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- AWS Console Global Status Footer -->
+  <footer class="aws-footer">
+    <div>
+      <span>Mock AWS FinOps Engine: <strong style="color: #10b981;">ONLINE (Port 8088)</strong></span>
+      <span> &bull; </span>
+      <span>Target: <strong>staging-us-east-1</strong></span>
+      <span> &bull; </span>
+      <span>Switch War Room: <strong>#finops-cost-optimizer</strong></span>
+      <span> &bull; </span>
+      <span>Design System: <a href="https://cloudscape.design" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-weight: 600;">AWS Cloudscape (https://cloudscape.design)</a></span>
+      <span> &bull; </span>
+      <span>Theme: <strong id="footerModeLabel">Light Mode</strong></span>
+    </div>
+    <div style="display:flex; align-items:center; gap:6px;">
+      <span class="aws-live-dot"></span>
+      <span>Auto-polling state: Live (1.5s interval)</span>
+    </div>
+  </footer>
+
+  <!-- Script Engine -->
+  <script>
+    let currentState = null;
+    let selectedVolumeIds = new Set();
+    let currentTheme = localStorage.getItem('aws_console_theme') || 'light';
+    let shellHistory = [];
+    let shellHistoryIndex = -1;
+
+    function cloudscapeStatus(type, label) {
+      if (type === 'success') {
+        return `<span class="awsui-status-indicator status-success">
+          <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#00802f"/><path d="M4.5 8.2l2.3 2.3 4.5-4.5" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>${label}</span>
+        </span>`;
+      } else if (type === 'warning') {
+        return `<span class="awsui-status-indicator status-warning">
+          <svg viewBox="0 0 16 16"><path d="M8 1.5L1 14.5h14L8 1.5z" fill="#f59e0b"/><path d="M8 6v4M8 12v0.8" stroke="#161e2e" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span>${label}</span>
+        </span>`;
+      } else if (type === 'error') {
+        return `<span class="awsui-status-indicator status-error">
+          <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#d13212"/><path d="M8 4.5v4.5M8 11.5v0.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>${label}</span>
+        </span>`;
+      } else if (type === 'in-progress') {
+        return `<span class="awsui-status-indicator status-in-progress">
+          <span class="awsui-status-spinner"></span>
+          <span>${label}</span>
+        </span>`;
+      } else {
+        return `<span class="awsui-status-indicator status-info">
+          <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#006ce0"/><path d="M8 7v4.5M8 4.5v0.8" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span>${label}</span>
+        </span>`;
+      }
+    }
+
+    function openPreferencesModal() {
+      document.getElementById('preferencesModal').classList.add('open');
+      document.getElementById('modalBackdrop').classList.add('open');
+    }
+
+    function setDensity(density) {
+      const tables = document.querySelectorAll('table.aws-table');
+      tables.forEach(t => {
+        t.classList.remove('compact', 'comfortable');
+        t.classList.add(density);
+      });
+      showNotification(`⚙️ Cloudscape Table density: ${density}`);
+    }
+
+    function toggleWrapText(wrap) {
+      const tables = document.querySelectorAll('table.aws-table');
+      tables.forEach(t => {
+        if (wrap) t.classList.add('wrap-cells');
+        else t.classList.remove('wrap-cells');
+      });
+      showNotification(`⚙️ Cloudscape Text wrapping ${wrap ? 'enabled' : 'disabled'}`);
+    }
+
+    function changePageSize(size) {
+      showNotification(`⚙️ Collection page size set to: ${size} items`);
+    }
+
+    function initTheme() {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      updateThemeUI();
+    }
+
+    function toggleTheme() {
+      currentTheme = (currentTheme === 'light') ? 'dark' : 'light';
+      localStorage.setItem('aws_console_theme', currentTheme);
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      updateThemeUI();
+    }
+
+    function updateThemeUI() {
+      const isLight = (currentTheme === 'light');
+      document.getElementById('themeIcon').innerText = isLight ? '☀️' : '🌙';
+      document.getElementById('themeLabel').innerText = isLight ? 'Light' : 'Dark';
+      document.getElementById('footerModeLabel').innerText = isLight ? 'Light Mode (Cloudscape)' : 'Dark Mode (Cloudscape)';
+    }
+
+    function toggleSidebar() {
+      const sb = document.getElementById('awsSidebar');
+      sb.classList.toggle('collapsed');
+      const icon = document.getElementById('sidebarToggleIcon');
+      if (sb.classList.contains('collapsed')) {
+        icon.innerHTML = '<polyline points="9 18 15 12 9 6"/>';
+      } else {
+        icon.innerHTML = '<polyline points="15 18 9 12 15 6"/>';
+      }
+    }
+
+    function navTo(viewName, el) {
+      document.querySelectorAll('.aws-nav-item').forEach(i => i.classList.remove('active'));
+      if (el) el.classList.add('active');
+
+      const views = ['overview', 'cost-explorer', 'eks', 'rds', 'ebs', 'snapshots', 'logs', 'war-room'];
+      views.forEach(v => {
+        const pane = document.getElementById('view' + v.split('-').map(s => s.charAt(0).toUpperCase() + s.slice(1)).join(''));
+        if (pane) pane.style.display = (v === viewName) ? 'block' : 'none';
+      });
+
+      // Update crumb
+      const names = {
+        'overview': 'Cost Optimization Hub',
+        'cost-explorer': 'AWS Cost Explorer',
+        'eks': 'Amazon EKS Workloads',
+        'rds': 'Amazon RDS PostgreSQL',
+        'ebs': 'Amazon EBS Volumes',
+        'snapshots': 'Amazon EBS Snapshots',
+        'logs': 'AWS CloudTrail',
+        'war-room': 'Switch War Room'
+      };
+      document.getElementById('crumbService').innerText = names[viewName] || 'Cost Optimization Hub';
+    }
+
+    async function fetchState() {
+      try {
+        const res = await fetch('/api/state');
+        if (!res.ok) return;
+        const state = await res.json();
+        currentState = state;
+        updateUI(state);
+      } catch (err) {
+        console.error("State sync failed:", err);
+      }
+    }
+
+    function updateUI(s) {
+      const isRemediated = (s.current_monthly_spend <= s.budget_baseline);
+      const banner = document.getElementById('awsAlertBanner');
+      const icon = document.getElementById('alertIcon');
+      const title = document.getElementById('alertTitle');
+      const body = document.getElementById('alertBody');
+      const bannerBtn = document.getElementById('bannerActionBtn');
+
+      if (isRemediated) {
+        banner.className = 'aws-alert aws-alert-success';
+        icon.innerText = '✅';
+        title.innerText = 'Infrastructure Successfully Right-Sized — Spend Baseline Restored';
+        body.innerHTML = `All 18 unattached EBS volumes safely snapshotted and purged (-$2.4k/mo). Staging EKS node pool scaled from 16 to 4 nodes (-$9.6k/mo). RDS PostgreSQL resized to db.r6g.large (-$6.4k/mo). <strong>Annualized Savings: $${s.realized_annual_savings.toLocaleString()} / year</strong> ($${s.realized_monthly_savings.toLocaleString()} / mo).`;
+        bannerBtn.style.display = 'none';
+        document.getElementById('navNotificationBadge').innerText = '0';
+        document.getElementById('navNotificationBadge').style.background = '#10b981';
+
+        // Update Chart Current Month to Baseline
+        document.getElementById('chartBarEks').setAttribute('y', '60');
+        document.getElementById('chartBarEks').setAttribute('height', '24');
+        document.getElementById('chartBarEbs').setAttribute('height', '0');
+        document.getElementById('chartBarRds').setAttribute('y', '76');
+        document.getElementById('chartBarRds').setAttribute('height', '8');
+        document.getElementById('chartSpendLabel').innerText = '$24,200';
+        document.getElementById('chartSpendLabel').setAttribute('fill', '#10b981');
+      } else {
+        banner.className = 'aws-alert aws-alert-warning';
+        icon.innerText = '⚠️';
+        title.innerText = 'Cost Anomaly Detected: Trailing Spend Exceeds Budget Baseline by +76.0%';
+        body.innerHTML = `Trailing 30-day spend for staging-us-east-1 is <strong>$${s.current_monthly_spend.toLocaleString()}/month</strong> against a budget threshold of <strong>$${s.budget_baseline.toLocaleString()}/month</strong>. Switch FinOps agents have identified <strong>$18,400/month ($220,800/year)</strong> in unattached EBS storage, idle EKS worker nodes, and over-provisioned RDS instances.`;
+        bannerBtn.style.display = 'inline-flex';
+        document.getElementById('navNotificationBadge').innerText = '1';
+        document.getElementById('navNotificationBadge').style.background = '#f59e0b';
+
+        // Update Chart Current Month to Spike
+        document.getElementById('chartBarEks').setAttribute('y', '24');
+        document.getElementById('chartBarEks').setAttribute('height', '44');
+        document.getElementById('chartBarEbs').setAttribute('height', '8');
+        document.getElementById('chartBarRds').setAttribute('y', '76');
+        document.getElementById('chartBarRds').setAttribute('height', '24');
+        document.getElementById('chartSpendLabel').innerText = '$42,600';
+        document.getElementById('chartSpendLabel').setAttribute('fill', 'var(--aws-red)');
+      }
+
+      // KPI Metric Cards
+      const spendEl = document.getElementById('metricMonthlySpend');
+      spendEl.innerHTML = `$${s.current_monthly_spend.toLocaleString()} <span class="unit">/ month</span>`;
+      spendEl.style.color = isRemediated ? 'var(--aws-green)' : 'var(--aws-red)';
+
+      const spendPill = document.getElementById('spendStatusPill');
+      spendPill.innerHTML = cloudscapeStatus(isRemediated ? 'success' : 'error', isRemediated ? 'Baseline' : 'Over Budget');
+
+      const wasteRemaining = Math.max(0, s.current_monthly_spend - s.budget_baseline);
+      document.getElementById('metricUnplannedWaste').innerHTML = `+$${wasteRemaining.toLocaleString()} <span class="unit">/ month</span>`;
+      document.getElementById('wasteStatusPill').innerHTML = cloudscapeStatus(wasteRemaining === 0 ? 'success' : 'warning', wasteRemaining === 0 ? '0 Waste' : 'Immediate Action');
+
+      document.getElementById('metricAnnualSavings').innerHTML = `+$${s.realized_annual_savings.toLocaleString()} <span class="unit">/ year</span>`;
+      document.getElementById('metricMonthlySavingsSub').innerText = `$${s.realized_monthly_savings.toLocaleString()} / mo permanent savings`;
+
+      document.getElementById('metricEksNodes').innerHTML = `${s.eks_nodes.current_nodes} <span class="unit">m6i.2xlarge</span>`;
+      document.getElementById('sideBadgeEks').innerText = s.eks_nodes.current_nodes;
+      const eksTableBadge = document.getElementById('eksTableCountBadge');
+      if (eksTableBadge) eksTableBadge.innerText = s.eks_nodes.current_nodes;
+      document.getElementById('eksStatusPill').innerHTML = cloudscapeStatus(s.eks_nodes.current_nodes <= 4 ? 'success' : 'warning', s.eks_nodes.current_nodes <= 4 ? 'Right-Sized' : '12 Idle Nodes');
+
+      const ebsCount = s.volumes.length;
+      document.getElementById('metricEbsVolumes').innerHTML = `${ebsCount} <span class="unit">gp3 (${(ebsCount * 1660).toLocaleString()} GB)</span>`;
+      document.getElementById('sideBadgeEbs').innerText = ebsCount;
+      const ebsTableBadge = document.getElementById('ebsTableCountBadge');
+      if (ebsTableBadge) ebsTableBadge.innerText = ebsCount;
+      document.getElementById('ebsStatusPill').innerHTML = cloudscapeStatus(ebsCount === 0 ? 'success' : 'error', ebsCount === 0 ? 'Reclaimed' : `${ebsCount} Unattached`);
+      document.getElementById('metricEbsSub').innerText = ebsCount === 0 ? `${s.snapshots.length} Snapshots Retained (30d)` : 'Unattached > 21 days | 0 IOPS';
+
+      document.getElementById('sideBadgeSnap').innerText = s.snapshots.length;
+      const snapTableBadge = document.getElementById('snapTableCountBadge');
+      if (snapTableBadge) snapTableBadge.innerText = s.snapshots.length;
+
+      const overviewCountBadge = document.getElementById('overviewCountBadge');
+      if (overviewCountBadge) overviewCountBadge.innerText = isRemediated ? '0' : '3';
+      document.getElementById('sideBadgeRec').innerText = isRemediated ? '0' : '3';
+
+      // Overview Statuses
+      const eksStatusCell = document.getElementById('eksStatusCell');
+      const btnEks = document.getElementById('btnEksAction');
+      if (s.eks_nodes.remediated) {
+        eksStatusCell.innerHTML = cloudscapeStatus('success', 'PR #482 Merged');
+        btnEks.disabled = true;
+        btnEks.style.opacity = '0.5';
+        btnEks.innerText = 'Completed';
+        document.getElementById('eksSpecCell').innerHTML = '4 x m6i.2xlarge <span style="color:var(--aws-green); font-size:11px;">(Right-Sized)</span>';
+      } else {
+        eksStatusCell.innerHTML = cloudscapeStatus('warning', 'Action Required');
+        btnEks.disabled = false;
+        btnEks.style.opacity = '1';
+        btnEks.innerText = 'Apply PR #482';
+        document.getElementById('eksSpecCell').innerText = '16 x m6i.2xlarge';
+      }
+
+      const rdsStatusCell = document.getElementById('rdsStatusCell');
+      const btnRds = document.getElementById('btnRdsAction');
+      if (s.rds_instances.remediated) {
+        rdsStatusCell.innerHTML = cloudscapeStatus('success', 'Resized to large');
+        btnRds.disabled = true;
+        btnRds.style.opacity = '0.5';
+        btnRds.innerText = 'Completed';
+        document.getElementById('rdsSpecCell').innerHTML = '4 x db.r6g.large <span style="color:var(--aws-green); font-size:11px;">(Downsized)</span>';
+      } else {
+        rdsStatusCell.innerHTML = cloudscapeStatus('warning', 'Action Required');
+        btnRds.disabled = false;
+        btnRds.style.opacity = '1';
+        btnRds.innerText = 'Downsize Class';
+        document.getElementById('rdsSpecCell').innerText = '4 x db.r6g.2xlarge';
+      }
+
+      const ebsStatusCell = document.getElementById('ebsStatusCell');
+      const btnEbs = document.getElementById('btnEbsAction');
+      if (ebsCount === 0) {
+        ebsStatusCell.innerHTML = cloudscapeStatus('success', 'All Purged & Saved');
+        btnEbs.disabled = true;
+        btnEbs.style.opacity = '0.5';
+        btnEbs.innerText = 'Purged (0 Remaining)';
+      } else {
+        ebsStatusCell.innerHTML = cloudscapeStatus('error', `${ebsCount} Orphaned`);
+        btnEbs.disabled = false;
+        btnEbs.style.opacity = '1';
+        btnEbs.innerText = 'Snapshot & Purge';
+      }
+
+      // Render Tables
+      renderEksTable(s.eks_nodes.current_nodes);
+      renderRdsTable(s.rds_instances.current_class, s.rds_instances.remediated);
+      renderEbsTable(s.volumes);
+      renderSnapshotsTable(s.snapshots);
+      renderCloudTrail(s.audit_log);
+      renderWarRoomDialogue(isRemediated);
+    }
+
+    function renderEksTable(nodeCount) {
+      const tbody = document.getElementById('eksNodeTableBody');
+      let html = '';
+      for (let i = 1; i <= 16; i++) {
+        const isRunning = i <= nodeCount;
+        const instanceId = `i-078a1bc490f${i < 10 ? '0' + i : i}`;
+        const nodeName = `ip-10-0-12-${100 + i}.ec2.internal`;
+        html += `
+          <tr>
+            <td><span class="code-tag">${instanceId}</span></td>
+            <td><strong>${nodeName}</strong></td>
+            <td>m6i.2xlarge (8 vCPU, 32 GB)</td>
+            <td>${isRunning ? (3.5 + (i % 3) * 0.8).toFixed(1) + '%' : '0.0%'}</td>
+            <td>${isRunning ? (12.2 + (i % 4) * 1.5).toFixed(1) + '%' : '0.0%'}</td>
+            <td>
+              ${cloudscapeStatus(isRunning ? 'success' : 'info', isRunning ? 'running' : 'terminated (PR #482)')}
+            </td>
+            <td>${i <= 4 ? '<span style="color:var(--aws-green); font-weight:600;">Retained Baseline</span>' : '<span style="color:var(--aws-text-dim);">Downscaled</span>'}</td>
+          </tr>
+        `;
+      }
+      tbody.innerHTML = html;
+    }
+
+    function renderRdsTable(currentClass, remediated) {
+      const tbody = document.getElementById('rdsTableBody');
+      const dbs = [
+        { id: "staging-app-primary", role: "Writer (Primary)", ver: "PostgreSQL 15.4" },
+        { id: "staging-app-replica-1", role: "Reader (Replica)", ver: "PostgreSQL 15.4" },
+        { id: "staging-app-replica-2", role: "Reader (Replica)", ver: "PostgreSQL 15.4" },
+        { id: "staging-app-analytics", role: "Reader (Read-Only)", ver: "PostgreSQL 15.4" }
+      ];
+
+      tbody.innerHTML = dbs.map(db => `
+        <tr>
+          <td><strong>${db.id}</strong></td>
+          <td>${db.role}</td>
+          <td><span class="code-tag">${db.ver}</span></td>
+          <td><strong style="color: ${remediated ? 'var(--aws-green)' : 'var(--aws-amber)'}">${currentClass}</strong></td>
+          <td>${(5.2 + (Math.random() * 2)).toFixed(1)}%</td>
+          <td>${remediated ? '$400 / mo' : '$2,000 / mo'}</td>
+          <td>
+            ${cloudscapeStatus(remediated ? 'success' : 'warning', remediated ? 'Optimal' : 'Over-Provisioned')}
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderEbsTable(volumes) {
+      const tbody = document.getElementById('ebsTableBody');
+      if (volumes.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" style="text-align: center; padding: 28px; color: var(--aws-green); font-weight:600;">
+              ✅ All 18 unattached EBS volumes safely snapshotted and terminated. 0 orphaned disks remaining.
+            </td>
+          </tr>
+        `;
+        selectedVolumeIds.clear();
+        updateEbsSelectionBanner();
+        return;
+      }
+
+      tbody.innerHTML = volumes.map(v => `
+        <tr>
+          <td><input type="checkbox" onchange="toggleSelectEbsVolume('${v.id}', this.checked)" ${selectedVolumeIds.has(v.id) ? 'checked' : ''}></td>
+          <td><span class="code-tag">${v.id}</span></td>
+          <td><strong>${v.size_gb} GiB</strong></td>
+          <td>${v.type}</td>
+          <td>3,000 IOPS / 125 MBps</td>
+          <td>${cloudscapeStatus('warning', v.status)}</td>
+          <td>${v.unattached_days} days</td>
+          <td style="color: var(--aws-red); font-weight: 700;">$${Math.round(2400 / 18)} / mo</td>
+          <td>
+            <button class="btn-action-small" onclick="purgeSingleVolume('${v.id}')">
+              Snapshot & Delete
+            </button>
+          </td>
+        </tr>
+      `).join('');
+      updateEbsSelectionBanner();
+    }
+
+    function toggleSelectEbsVolume(id, checked) {
+      if (checked) selectedVolumeIds.add(id);
+      else selectedVolumeIds.delete(id);
+      updateEbsSelectionBanner();
+    }
+
+    function toggleSelectAllEbs(checked) {
+      if (!currentState || !currentState.volumes) return;
+      if (checked) {
+        currentState.volumes.forEach(v => selectedVolumeIds.add(v.id));
+      } else {
+        selectedVolumeIds.clear();
+      }
+      renderEbsTable(currentState.volumes);
+    }
+
+    function clearEbsSelection() {
+      selectedVolumeIds.clear();
+      document.getElementById('ebsSelectAllCheckbox').checked = false;
+      if (currentState) renderEbsTable(currentState.volumes);
+    }
+
+    function updateEbsSelectionBanner() {
+      const banner = document.getElementById('ebsSelectionBanner');
+      const count = selectedVolumeIds.size;
+      if (count > 0) {
+        banner.classList.add('visible');
+        document.getElementById('ebsSelectedCountLabel').innerText = `${count} volume${count > 1 ? 's' : ''} selected (${(count * 1660).toLocaleString()} GiB)`;
+        const savings = Math.round((2400 / 18) * count);
+        document.getElementById('ebsSelectedSavingsLabel').innerText = `(Immediate savings: +$${savings}/mo)`;
+      } else {
+        banner.classList.remove('visible');
+      }
+    }
+
+    async function purgeSelectedVolumes() {
+      if (selectedVolumeIds.size === 0) return;
+      const ids = Array.from(selectedVolumeIds);
+      try {
+        const res = await fetch('/api/remediate/volumes/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ volume_ids: ids })
+        });
+        const data = await res.json();
+        showNotification(`✅ Reclaimed ${data.purged_count} volumes: +$${data.monthly_savings}/mo permanent savings`);
+        selectedVolumeIds.clear();
+        await fetchState();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function renderSnapshotsTable(snapshots) {
+      const tbody = document.getElementById('snapshotsTableBody');
+      if (snapshots.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" style="text-align: center; padding: 24px; color: var(--aws-text-muted);">
+              No safety snapshots created yet. Snapshots are automatically captured prior to volume termination.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = snapshots.map(s => `
+        <tr>
+          <td><span class="code-tag">${s.snapshot_id}</span></td>
+          <td><span class="code-tag">${s.source_volume}</span></td>
+          <td>${s.created_at}</td>
+          <td><span class="status-pill pill-blue">${s.retention}</span></td>
+          <td>${cloudscapeStatus('success', 'completed (100%)')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderCloudTrail(logs) {
+      const list = document.getElementById('cloudTrailLogList');
+      list.innerHTML = logs.map(l => `
+        <div style="padding:10px 0; border-bottom:1px solid var(--aws-border-light); display:grid; grid-template-columns:100px 140px 1fr 100px; align-items:center; gap:12px; font-size:12px;">
+          <span style="color:var(--aws-text-dim); font-family:monospace;">${l.timestamp}</span>
+          <strong style="color:var(--aws-orange);">${l.actor}</strong>
+          <span>${l.event}</span>
+          <div style="text-align:right;">${cloudscapeStatus('success', '200 OK')}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderWarRoomDialogue(isRemediated) {
+      const stream = document.getElementById('warRoomChatStream');
+      const messages = [
+        {
+          avatar: '/assets/pfp/agent_auditor.png',
+          name: 'auditor',
+          role: 'Billing & Spend Specialist (Switch Agent)',
+          text: `📊 <strong>AUDIT REPORT: Monthly Cloud Spend Anomaly Detected!</strong><br>&bull; Trailing Spend: $42,600 (Budget baseline: $24,200) | Variance: +$18,400 / mo (+76.0%)<br>&bull; Concentration: EKS Compute, RDS PostgreSQL, Orphaned EBS storage.<br>👉 <em>@metrics: Please correlate with Datadog/CloudWatch telemetry over the past 30 days.</em>`
+        },
+        {
+          avatar: '/assets/pfp/agent_metrics.png',
+          name: 'metrics',
+          role: 'Observability & Capacity Specialist (Switch Agent)',
+          text: `📉 <strong>TELEMETRY CROSS-REFERENCE COMPLETE (Datadog + CloudWatch):</strong><br>Identified three distinct waste categories totaling $18,400 / mo ($220,800 / year):<br>1. 💾 18 Unattached EBS Storage Volumes (0 IOPS for >21 days) &rarr; $2,400/mo waste<br>2. ☸️ 12 Idle EKS Worker Nodes (Avg CPU: 4.2%, Peak RAM: 14.8%) &rarr; $9,600/mo waste<br>3. 🗄️ 4 Over-Provisioned RDS PostgreSQL Instances (p95 CPU: 6.1%) &rarr; $6,400/mo waste<br>👉 <em>@coder: Telemetry confirms zero performance impact. Generate IaC PR and cleanup scripts.</em>`
+        },
+        {
+          avatar: '/assets/pfp/agent_coder.png',
+          name: 'coder',
+          role: 'IaC & Automation Engineer (Switch Agent)',
+          text: `🛠️ <strong>REMEDIATION ASSETS GENERATED & VERIFIED:</strong><br>1. Opened GitHub PR #482 (Terraform rightsizing: downscale EKS to 4 nodes & resize RDS to db.r6g.large).<br>2. Safe Volume Cleanup Script: Captures snapshot with tag <code>Retention=30Days</code> before deleting each volume.<br>👉 <em>@dev: Please verify pod bin-packing and CI/CD pipelines before human sign-off.</em>`
+        },
+        {
+          avatar: '/assets/pfp/agent_dev.png',
+          name: 'dev',
+          role: "Developer's Agent (CI/CD & App Manifests)",
+          text: `🛡️ <strong>DEVELOPER WORKLOAD IMPACT ASSESSMENT:</strong><br>&bull; Pod Capacity: 38 staging microservices safely accommodate 4 nodes with 42.5% buffer remaining.<br>&bull; CI/CD Schedule: Zero scheduled load tests until next sprint.<br>&bull; App Dev Verdict: 🟢 <strong>GREEN LIGHT</strong>. Zero pod eviction risk or dev velocity impact.`
+        },
+        {
+          avatar: '/assets/pfp/server_icon.png',
+          name: 'Sarah Chen',
+          role: 'Lead Cloud Architect (Human Teammate)',
+          text: `<code>!approve all</code> &mdash; Workload safety verified by Marcus, budget signed off by Elena. Terraform plan verified. Safe snapshots confirmed. Execute now!`
+        }
+      ];
+
+      if (isRemediated) {
+        messages.push({
+          avatar: '/assets/pfp/agent_auditor.png',
+          name: 'auditor',
+          role: 'Billing & Spend Specialist',
+          text: `✅ <strong>POST-REMEDIATION VERIFICATION COMPLETE:</strong><br>&bull; Live Invoiced Spend: <strong>$24,200 / month</strong> (Target Baseline Restored)<br>&bull; Realized Permanent Savings: <strong>+$220,800 / year</strong> ($18,400 / mo)<br>&bull; 18 Safety Snapshots Retained for 30 Days. Quarterly FinOps targets achieved!`
+        });
+      }
+
+      stream.innerHTML = messages.map(m => `
+        <div class="chat-bubble-row">
+          <img src="${m.avatar}" class="agent-avatar" alt="${m.name}" onerror="this.src='/assets/pfp/bot_switch.png'">
+          <div style="flex:1;">
+            <div class="chat-author-line">
+              <span class="chat-author-name">${m.name}</span>
+              <span class="chat-author-role">${m.role}</span>
+            </div>
+            <div class="chat-text">${m.text}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Modal Triggers
+    function promptRemediationModal() {
+      document.getElementById('remediationModal').classList.add('open');
+      document.getElementById('modalBackdrop').classList.add('open');
+    }
+
+    function promptResetModal() {
+      document.getElementById('resetModal').classList.add('open');
+      document.getElementById('modalBackdrop').classList.add('open');
+    }
+
+    function closeAllModals() {
+      document.getElementById('remediationModal').classList.remove('open');
+      document.getElementById('resetModal').classList.remove('open');
+      const prefModal = document.getElementById('preferencesModal');
+      if (prefModal) prefModal.classList.remove('open');
+      document.getElementById('modalBackdrop').classList.remove('open');
+    }
+
+    async function confirmExecuteRemediation() {
+      closeAllModals();
+      showNotification('🚀 Executing all remediations via Switch agents...');
+      await remediateAll();
+      showNotification('✅ Spend dropped to $24,200/mo (+$220.8k/yr savings realized)');
+    }
+
+    async function confirmResetState() {
+      closeAllModals();
+      await resetState();
+      showNotification('🔄 Cloud environment reset to initial outage state ($42,600/mo spend)');
+    }
+
+    async function remediateAll() {
+      try {
+        await fetch('/api/remediate/all', { method: 'POST' });
+        await fetchState();
+      } catch (err) { console.error(err); }
+    }
+
+    async function remediateVolumes() {
+      try {
+        await fetch('/api/remediate/volumes', { method: 'POST' });
+        await fetchState();
+        showNotification('💾 18 EBS Volumes snapshotted and purged (-$2.4k/mo)');
+      } catch (err) { console.error(err); }
+    }
+
+    async function purgeSingleVolume(volId) {
+      try {
+        await fetch('/api/remediate/volume', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ volume_id: volId })
+        });
+        await fetchState();
+        showNotification(`💾 Volume ${volId} snapshotted and terminated.`);
+      } catch (err) { console.error(err); }
+    }
+
+    async function remediateTerraform() {
+      try {
+        await fetch('/api/remediate/terraform', { method: 'POST' });
+        await fetchState();
+        showNotification('☸️ Merged PR #482: Right-sized EKS to 4 nodes & downsized RDS (-$16k/mo)');
+      } catch (err) { console.error(err); }
+    }
+
+    async function simulateWarRoom() {
+      showNotification('⚡ Autonomous War Room Triggered &bull; Multi-agent audit in progress...');
+      try {
+        await fetch('/api/simulate', { method: 'POST' });
+        await fetchState();
+        navTo('war-room');
+        showNotification('🎉 Multi-Agent War Room Complete &bull; $220,800/yr savings signed off!');
+      } catch (err) { console.error(err); }
+    }
+
+    async function resetState() {
+      try {
+        await fetch('/api/reset', { method: 'POST' });
+        await fetchState();
+      } catch (err) { console.error(err); }
+    }
+
+    function showNotification(text) {
+      const c = document.getElementById('toastContainer');
+      const card = document.createElement('div');
+      card.className = 'toast-card';
+      card.innerHTML = `
+        <div style="flex:1; font-size:13px; font-weight:600; color:var(--aws-text);">${text}</div>
+        <button style="background:none; border:none; color:var(--aws-text-muted); cursor:pointer; font-size:14px;" onclick="this.parentElement.remove()">✕</button>
+      `;
+      c.appendChild(card);
+      setTimeout(() => { if (card.parentElement) card.remove(); }, 4000);
+    }
+
+    function exportTableToCSV(tableId, filename) {
+      const table = document.getElementById(tableId);
+      if (!table) return;
+      let csv = [];
+      const rows = table.querySelectorAll('tr');
+      for (let i = 0; i < rows.length; i++) {
+        let row = [], cols = rows[i].querySelectorAll('td, th');
+        for (let j = 0; j < cols.length; j++) {
+          let text = cols[j].innerText.replace(/(\r\n|\n|\r)/gm, ' ').replace(/"/g, '""').trim();
+          row.push('"' + text + '"');
+        }
+        csv.push(row.join(','));
+      }
+      const csvFile = new Blob([csv.join('\n')], { type: 'text/csv' });
+      const downloadLink = document.createElement('a');
+      downloadLink.download = filename;
+      downloadLink.href = window.URL.createObjectURL(csvFile);
+      downloadLink.style.display = 'none';
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      showNotification(`📥 Exported table to ${filename}`);
+    }
+
+    function filterTable(tableId, query) {
+      const q = query.toLowerCase();
+      const rows = document.querySelectorAll(`#${tableId} tbody tr`);
+      rows.forEach(r => {
+        r.style.display = r.innerText.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+
+    // Sort EBS Table by column
+    let sortDir = {};
+    function sortEbsTable(prop) {
+      if (!currentState || !currentState.volumes) return;
+      sortDir[prop] = !sortDir[prop];
+      currentState.volumes.sort((a, b) => {
+        if (sortDir[prop]) return a[prop] > b[prop] ? 1 : -1;
+        return a[prop] < b[prop] ? 1 : -1;
+      });
+      renderEbsTable(currentState.volumes);
+    }
+
+    // CloudShell
+    function toggleCloudShell() {
+      const drawer = document.getElementById('cloudshellDrawer');
+      drawer.classList.toggle('open');
+      if (drawer.classList.contains('open')) {
+        setTimeout(() => document.getElementById('cloudshellInput').focus(), 150);
+      }
+    }
+
+    function clearCloudshell() {
+      document.getElementById('cloudshellBody').innerHTML = '<div>AWS CloudShell v2.8.1 (x86_64 Linux 5.15)</div><div>[cloudshell@staging-us-east-1 ~]$ </div>';
+    }
+
+    function runShellCmd(cmd) {
+      document.getElementById('cloudshellInput').value = cmd;
+      handleCloudshellKey({ key: 'Enter', target: document.getElementById('cloudshellInput') });
+    }
+
+    async function handleCloudshellKey(e) {
+      if (e.key === 'Enter') {
+        const input = e.target;
+        const cmd = input.value.trim();
+        if (!cmd) return;
+        input.value = '';
+
+        shellHistory.push(cmd);
+        shellHistoryIndex = shellHistory.length;
+
+        const body = document.getElementById('cloudshellBody');
+        const cmdLine = document.createElement('div');
+        cmdLine.style.color = '#e2e8f0';
+        cmdLine.innerText = `[cloudshell@staging-us-east-1 ~]$ ${cmd}`;
+        body.appendChild(cmdLine);
+
+        try {
+          const res = await fetch('/api/shell', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ command: cmd })
+          });
+          const data = await res.json();
+          if (data.output === '__CLEAR__') {
+            clearCloudshell();
+            return;
+          }
+          const respLine = document.createElement('pre');
+          respLine.style.margin = '4px 0 8px 0';
+          respLine.style.whiteSpace = 'pre-wrap';
+          respLine.style.color = '#38bdf8';
+          respLine.innerText = data.output;
+          body.appendChild(respLine);
+          await fetchState();
+        } catch (err) {
+          const errLine = document.createElement('div');
+          errLine.style.color = '#ef4444';
+          errLine.innerText = 'Error executing command in CloudShell.';
+          body.appendChild(errLine);
+        }
+        body.scrollTop = body.scrollHeight;
+      } else if (e.key === 'ArrowUp') {
+        if (shellHistory.length > 0 && shellHistoryIndex > 0) {
+          shellHistoryIndex--;
+          e.target.value = shellHistory[shellHistoryIndex];
+        }
+      } else if (e.key === 'ArrowDown') {
+        if (shellHistoryIndex < shellHistory.length - 1) {
+          shellHistoryIndex++;
+          e.target.value = shellHistory[shellHistoryIndex];
+        } else {
+          shellHistoryIndex = shellHistory.length;
+          e.target.value = '';
+        }
+      }
+    }
+
+    function openServicesMega() {
+      navTo('overview');
+      showNotification('ℹ️ Services Menu: Switch tabs from the left navigation panel.');
+    }
+
+    function handleSearch(e) {
+      if (e.key === 'Enter') {
+        const val = e.target.value.toLowerCase();
+        if (val.includes('eks') || val.includes('k8s') || val.includes('kube') || val.includes('node')) {
+          navTo('eks');
+        } else if (val.includes('ebs') || val.includes('volume') || val.includes('disk')) {
+          navTo('ebs');
+        } else if (val.includes('rds') || val.includes('database') || val.includes('sql')) {
+          navTo('rds');
+        } else if (val.includes('snap') || val.includes('backup')) {
+          navTo('snapshots');
+        } else if (val.includes('trail') || val.includes('log')) {
+          navTo('logs');
+        } else if (val.includes('war') || val.includes('agent') || val.includes('discord')) {
+          navTo('war-room');
+        } else {
+          navTo('overview');
+          document.getElementById('overviewFilterInput').value = val;
+          filterTable('overviewTable', val);
+        }
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+      fetchState();
+      setInterval(fetchState, 1500);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.altKey && e.key.toLowerCase() === 's') {
+          e.preventDefault();
+          document.getElementById('awsSearchInput').focus();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
