@@ -4,7 +4,7 @@
 
 [![Built for Switch](https://img.shields.io/badge/Switch-Compatible-FF895E)](https://github.com/sandbox-quantum/switch)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
-[![Wispr Voice Enabled](https://img.shields.io/badge/Wispr_Flow-Voice_Driven-purple.svg)](./wispr/WISPR_FLOW_INTEGRATION.md)
+[![Wispr Voice Enabled](https://img.shields.io/badge/Wispr_Flow-Voice_Driven-purple.svg)](#-wispr-flow-voice-driven-swarm-ops)
 [![Realized Savings](https://img.shields.io/badge/Annualized_Savings-$220,800/yr-brightgreen.svg)](#-financial-impact-summary)
 [![Upstream Contributions](https://img.shields.io/badge/Switch_Core_PRs-26_Merged_/_Green_CI-blue.svg)](#-bonus-26-upstream-contributions-to-switch-core)
 
@@ -114,7 +114,7 @@ All multi-agent interactions are compatible with **Wispr Flow**, allowing hands-
 * *"At auditor run weekly finops audit for staging-us-east-1"* ➔ Triggers multi-agent telemetry analysis.
 * *"At coder approve all. Execute the remediation and tag auditor for verification."* ➔ Merges Terraform PR and updates AWS console.
 
-*(See full voice scorecard and prompt catalog in [`wispr/WISPR_FLOW_INTEGRATION.md`](./wispr/WISPR_FLOW_INTEGRATION.md)).*
+*(Use Wispr Flow on your desktop mic to dictate chat commands hands-free at 160 WPM).*
 
 ---
 
@@ -131,18 +131,21 @@ python mock_aws_server.py
 ```
 *Open [http://localhost:8088/dashboard](http://localhost:8088/dashboard) in your browser.*
 
-### 2. Connect Switch Agents to Discord
-Follow the step-by-step setup in [`docs/DISCORD_SETUP_GUIDE.md`](./docs/DISCORD_SETUP_GUIDE.md).
+### 2. Apply Switch FinOps Workflow Template
+```bash
+switch template apply workflows/finops-cost-optimizer.template.yaml
+```
 
-### 3. Run the Live Demo
-Follow the complete script in [`docs/LIVE_DEMO_WALKTHROUGH.md`](./docs/LIVE_DEMO_WALKTHROUGH.md):
+### 3. Run the Live Demo in Discord
+In your connected Discord channel:
 ```text
-# 1. Trigger Audit in Discord
+# Step 1: Trigger the multi-agent FinOps audit
 @auditor run weekly finops audit for staging-us-east-1
 
-# 2. Approve & Remediate (after @dev confirms pod buffer)
+# Step 2: Approve & remediate (after @dev confirms pod buffer)
 @coder approve all. Execute the remediation and tag auditor for verification.
 ```
+Observe the live state change on `http://localhost:8088/dashboard`!
 
 ---
 
